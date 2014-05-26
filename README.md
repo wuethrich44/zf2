@@ -19,8 +19,8 @@ Entwicklungsumgebung einrichten:
     cd website
     php composer.phar self-update
     php composer.phar install
-    
-Das Datenbankschema befindet sich im Ordner [data](data/). Dort findest du einerseits die [Struktur](data/schema.mysql.sql) und alle [Module](data/subjects.mysql.sql).
+
+Als Datenbank verwenden wir eine MySql-Datenbank. Das Datenbankschema befindet sich im Ordner [data](data/). Dort findest du einerseits die [Struktur](data/schema.mysql.sql) und alle [Module](data/subjects.mysql.sql).
 
 ## Uploads
 
