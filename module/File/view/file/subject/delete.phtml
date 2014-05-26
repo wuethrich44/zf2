@@ -1,0 +1,46 @@
+<?php
+$title = $this->translate('Delete subject');
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<p>
+    <?php echo $this->translate('Are you sure that you want to delete'); ?>
+    '<?php echo $this->escapeHtml($subject->name); ?>'?
+</p>
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url('subject', array(
+            'action' => 'delete',
+            'id' => $this->id
+)));
+$form->get('id')->setAttribute('value', $this->id);
+$form->prepare();
+
+echo $this->form()->openTag($form);
+
+echo $this->formHidden($form->get('id'));
+
+if ($messages = $form->get('id')->getMessages()) :
+    ?>
+    <div class="alert alert-warning">
+        <p>
+            <?php
+            foreach ($messages as $message) {
+                echo $message . "\n";
+            }
+            ?>
+        </p>
+        <p>
+            <a href="<?php echo $this->url('download', array('subject' => $this->id)); ?>">
+                <?php echo $this->translate('go to ') . $subject->name; ?>
+            </a>
+        </p>
+    </div>
+    <?php
+endif;
+echo $this->formSubmit($form->get('yes'));
+echo $this->formSubmit($form->get('no'));
+
+echo $this->form()->closeTag();
+?>

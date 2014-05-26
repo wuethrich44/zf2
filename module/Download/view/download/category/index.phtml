@@ -1,0 +1,21 @@
+<ol class="breadcrumb">
+    <li>
+        <a href="<?php echo $this->url('download'); ?>">
+            <span class="glyphicon glyphicon-home"></span>
+        </a>
+    </li>
+    <li class="active">
+        <?php echo $this->escapeHtml($subject->abbreviation); ?>
+    </li>
+</ol>
+
+<div class="list-group">
+    <?php
+    foreach ($categories as $category) :
+        $url = $this->url('download', array('subject' => $subject->subjectID, 'category' => $category->categoryID));
+    ?>
+        <a href="<?php echo $this->escapeHtml($url); ?>" class="list-group-item"> 
+            <?php echo $this->escapeHtml($category->name); ?>
+        </a>
+    <?php endforeach; ?>
+</div>

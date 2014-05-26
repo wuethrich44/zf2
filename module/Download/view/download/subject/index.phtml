@@ -1,0 +1,11 @@
+<div class="list-group">
+    <?php
+    foreach ($subjects as $subject) :
+        $url = $this->url('download', array('subject' => $subject->subjectID));
+    ?>
+        <a href="<?php echo $url ?>" class="list-group-item"> 
+            <?php echo $this->escapeHtml($subject->name); ?>
+            <span class="badge"><?php echo $this->escapeHtml($subject->abbreviation); ?></span>
+        </a>
+    <?php endforeach; ?>
+</div>

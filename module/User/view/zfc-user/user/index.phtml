@@ -1,0 +1,21 @@
+<div data-role="page" id="login">
+    <div data-role="header">
+        <h1><?php echo $this->translate('Admin Area'); ?></h1>
+    </div>
+    <div role="main" class="ui-content">
+        <div style="float:left; padding-right:16px;"><?php echo $this->gravatar($this->zfcUserIdentity()->getEmail()) ?></div>
+        <h3><?php echo $this->translate('Hello'); ?>, <?php echo $this->zfcUserDisplayName() ?>!</h3>
+        <ul class="nav nav-pills">
+            <li>
+                <a href="<?php echo $this->url('zfcuser/changeemail'); ?>">
+                    <?php echo $this->translate('Change Email'); ?>
+                </a>
+            </li>
+            <li>
+                <a href="<?php echo $this->url('zfcuser/changepassword'); ?>">
+                    <?php echo $this->translate('Change Password'); ?>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

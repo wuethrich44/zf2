@@ -1,0 +1,48 @@
+/*
+ * Custom CSS
+ */
+html, body {
+	height: 100%;
+}
+
+.title {
+	font-family: 'Roboto', 'sans-serif';
+	font-weight: bolder;
+	font-size: 5em;
+	text-align: center;
+	margin-bottom: 100px;
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 4em;
+    }
+}
+
+/* Begin Footer */
+#wrap {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -60px;
+}
+
+#push,footer {
+	height: 60px;
+}
+
+footer {
+	background-color: #f5f5f5;
+}
+
+footer p {
+	margin: 0px;
+	font-size: 11px;
+	line-height: 60px;
+}
+
+/* End Footer */
+
+.breadcrumb {
+	background-color: white;
+}
