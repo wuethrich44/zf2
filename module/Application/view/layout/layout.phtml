@@ -87,7 +87,9 @@
         <footer>
             <div class="container">
                 <p class="text-muted pull-right">
-                    <a href="https://github.com/tdwuethr/studentbox"><img style="height: 16px;"src="img/GitHub-Mark-32px.png" alt="See us on Github"></a>
+                    <a href="https://github.com/studentbox/website" target="_blank">
+                        <img style="height: 16px;" src="<?php echo $this->basePath() . '/img/GitHub-Mark-32px.png' ?>" alt="See us on Github">
+                    </a>
                     
                     <?php if (!$this->zfcUserIdentity()): ?>
                      | <a href="<?= $this->url('zfcuser') ?>">Login</a>
