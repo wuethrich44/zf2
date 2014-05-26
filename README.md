@@ -6,7 +6,7 @@ Tipps und Tricks, damit du angenehm durchs Semester kommst.
 
 ## Development
 
-Unsere Plattform wurde mit dem [Zend Framework 2.3](zendframework/zf2) entwickelt.
+Unsere Plattform wurde mit dem [Zendframework 2.3](https://github.com/zendframework/zf2) entwickelt.
 
 Wenn du dich an der Entwicklung beteiligen möchtest, reicht eine einfache IDE und ein Pull Request.
 
