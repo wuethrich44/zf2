@@ -4,7 +4,7 @@
 	"require" : {
 		"php" : ">=5.3.3",
 		"zendframework/zendframework" : "2.3.*",
-		"zf-commons/zfc-user" : "1.0.0"
+		"zf-commons/zfc-user" : "1.1.*"
 	},
 	"require-dev" : {
 		"zendframework/zftool" : "dev-master",
