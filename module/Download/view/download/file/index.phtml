@@ -27,8 +27,9 @@
 
 <?php endif; ?>
 
-<div class="list-group">
+<ul class="nav nav-pills nav-stacked">
     <?php foreach ($files as $file) : ?>  
+    <li>
         <a href="<?= $this->url('download', array('subject' => $subject->subjectID, 'category' => $category->categoryID, 'file' => $file->id)) ?>" class="list-group-item"> 
             <span class="glyphicon glyphicon-file"></span>
             <?php echo $this->escapeHtml($file->name); ?>
@@ -40,9 +41,10 @@
             <?php endif; ?>
 
             <span class="badge"><?php echo $this->escapeHtml($file->downloadCount); ?></span>   
-        </a>	
+        </a>
+    </li>
     <?php endforeach; ?>
-</div>
+</ul>
 
 <?php if ($this->zfcUserIdentity()): ?>
 

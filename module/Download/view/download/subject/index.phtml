@@ -1,11 +1,39 @@
-<div class="list-group">
+<ul class="nav nav-pills nav-stacked">
     <?php
     foreach ($subjects as $subject) :
         $url = $this->url('download', array('subject' => $subject->subjectID));
-    ?>
-        <a href="<?php echo $url ?>" class="list-group-item"> 
-            <?php echo $this->escapeHtml($subject->name); ?>
-            <span class="badge"><?php echo $this->escapeHtml($subject->abbreviation); ?></span>
-        </a>
-    <?php endforeach; ?>
-</div>
+        ?>
+        <li>
+            <a href="<?php echo $url ?>" class="list-group-item"> 
+                <?php echo $this->escapeHtml($subject->name); ?>
+                <span class="badge"><?php echo $this->escapeHtml($subject->abbreviation); ?></span>
+            </a>
+        </li>
+        <?php endforeach; ?>
+</ul>
+<script>
+    $(document).ready(function() {
+        var form = $("<form>").attr({"action": "#"}),
+                div = $("<div>").attr({"class": "form-group"}),
+                input = $("<input>").attr({"class": "form-control", "type": "text", "placeholder": "Search..."});
+
+        $(div).append(input);
+        $(form).append(div).prependTo(".nav-stacked");
+
+        jQuery.expr[':'].Contains = function(a, i, m) {
+            return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
+        };
+
+        $("input").change(function() {
+            var filter = $(this).val();
+            if (filter) {
+                $(".nav-stacked").find("a:not(:Contains(" + filter + "))").parent().hide();
+                $(".nav-stacked").find("a:Contains(" + filter + ")").parent().show();
+            } else {
+                $(".nav-stacked").find("li").slideDown();
+            }
+        }).keyup(function() {
+            $(this).change();
+        });
+    });
+</script>

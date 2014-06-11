@@ -9,13 +9,15 @@
     </li>
 </ol>
 
-<div class="list-group">
+<ul class="nav nav-pills nav-stacked">
     <?php
     foreach ($categories as $category) :
         $url = $this->url('download', array('subject' => $subject->subjectID, 'category' => $category->categoryID));
     ?>
+    <li>
         <a href="<?php echo $this->escapeHtml($url); ?>" class="list-group-item"> 
             <?php echo $this->escapeHtml($category->name); ?>
         </a>
+    </li>
     <?php endforeach; ?>
-</div>
+</ul>
