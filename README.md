@@ -1,5 +1,9 @@
 # Studentbox
 
+[![Build Status](https://travis-ci.org/studentbox/website.svg?branch=master)](https://travis-ci.org/studentbox/website)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/studentbox/website/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/studentbox/website/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/studentbox/website/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/studentbox/website/?branch=master)
+
 Studentbox erleichtert dir das studieren an der HSLU. Wir bieten 
 erstklassige Zusammenfassungen, alte Testate und allerlei
 Tipps und Tricks, damit du angenehm durchs Semester kommst.
