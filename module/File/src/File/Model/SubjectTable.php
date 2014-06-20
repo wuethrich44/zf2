@@ -20,7 +20,7 @@ class SubjectTable {
     /**
      * Return all subjects
      *
-     * @return ResultSet
+     * @return \Zend\Db\ResultSet\ResultSet
      */
     public function fetchAll() {
         $select = $this->tableGateway->getSql()->select()->order('name');
@@ -51,7 +51,7 @@ class SubjectTable {
     /**
      * Return all subjects which include files
      *
-     * @return ResultSet
+     * @return \Zend\Db\ResultSet\ResultSet
      */
     public function getUsedSubjects() {
         $select = $this->tableGateway->getSql()

@@ -20,7 +20,7 @@ class CategoryTable {
     /**
      * Return all categories
      *
-     * @return ResultSet with Categories
+     * @return \Zend\Db\ResultSet\ResultSet with Categories
      */
     public function fetchAll() {
         $select = $this->tableGateway->getSql()->select()->order('name');
@@ -33,7 +33,7 @@ class CategoryTable {
      *
      * @param int $categoryID            
      * @throws \Exception Categorie not found
-     * @return Category
+     * @return \Zend\Db\ResultSet\ResultSet with Categories
      */
     public function getCategory($categoryID) {
         $categoryID = (int) $categoryID;
@@ -52,7 +52,7 @@ class CategoryTable {
      * Return all modules which include files
      *
      * @param unknown $moduleID            
-     * @return ResultSet with Categories
+     * @return \Zend\Db\ResultSet\ResultSet with Categories
      */
     public function getUsedCategories($moduleID) {
         $moduleID = (int) $moduleID;

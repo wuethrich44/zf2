@@ -119,7 +119,7 @@ class FileController extends AbstractActionController {
      *
      * @throws \Exception Could not delete file
      * @throws \InvalidArgumentException File not found
-     * @return json
+     * @return \Zend\Http\Response|null
      */
     public function deleteAction() {
         // Check Login

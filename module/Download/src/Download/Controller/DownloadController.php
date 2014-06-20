@@ -121,7 +121,7 @@ class DownloadController extends AbstractActionController {
     /**
      * Return the SubjectTableGateway
      * 
-     * @return \Zend\Db\TableGateway\TableGateway
+     * @return File\Model\SubjectTable
      */
     public function getSubjectTable() {
         if (!$this->subjectTable) {
@@ -134,7 +134,7 @@ class DownloadController extends AbstractActionController {
     /**
      * Return the CategoryTableGateway
      * 
-     * @return \Zend\Db\TableGateway\TableGateway
+     * @return File\Model\CategoryTable
      */
     public function getCategoryTable() {
         if (!$this->categoryTable) {
@@ -147,7 +147,7 @@ class DownloadController extends AbstractActionController {
     /**
      * Return the FileTableGateway
      * 
-     * @return \Zend\Db\TableGateway\TableGateway
+     * @return File\Model\FileTable
      */
     public function getFileTable() {
         if (!$this->fileTable) {
