@@ -16,24 +16,24 @@ class CategoryControllerTest extends AbstractHttpControllerTestCase {
     }
 
     protected function mockZfcLogin() {
-        $ZfcAuthService = $this->getMock('ZfcUser\Authentication\Storage\Db');
+        $zfcAuthService = $this->getMock('ZfcUser\Authentication\Storage\Db');
 
-        $ZfcUserMock = $this->getMock('ZfcUser\Entity\User');
+        $zfcUserMock = $this->getMock('ZfcUser\Entity\User');
 
-        $ZfcUserMock->expects($this->any())
+        $zfcUserMock->expects($this->any())
                 ->method('getId')
                 ->will($this->returnValue('1'));
 
-        $ZfcAuthService->expects($this->any())
+        $zfcAuthService->expects($this->any())
                 ->method('getIdentity')
-                ->will($this->returnValue($ZfcUserMock));
+                ->will($this->returnValue($zfcUserMock));
 
-        $ZfcAuthService->expects($this->any())
+        $zfcAuthService->expects($this->any())
                 ->method('hasIdentity')
                 ->will($this->returnValue(true));
 
         $this->getApplicationServiceLocator()->setAllowOverride(true);
-        $this->getApplicationServiceLocator()->setService('ZfcUser\Authentication\Storage\Db', $ZfcAuthService);
+        $this->getApplicationServiceLocator()->setService('ZfcUser\Authentication\Storage\Db', $zfcAuthService);
     }
 
     protected function mockCategoryTable() {
@@ -70,17 +70,8 @@ class CategoryControllerTest extends AbstractHttpControllerTestCase {
 
     public function testAddActionRedirectsAfterValidPost() {
         $this->mockZfcLogin();
-        $categoryTableMock = $this->getMockBuilder('File\Model\CategoryTable')
-                ->disableOriginalConstructor()
-                ->getMock();
-
-        $categoryTableMock->expects($this->once())
-                ->method('saveCategory')
-                ->will($this->returnValue(null));
-
-        $serviceManager = $this->getApplicationServiceLocator();
-        $serviceManager->setAllowOverride(true);
-        $serviceManager->setService('File\Model\CategoryTable', $categoryTableMock);
+        
+        $this->mockCategoryTable();
 
         $postData = array(
             'categoryID' => '',
