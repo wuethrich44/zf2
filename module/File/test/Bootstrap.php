@@ -45,7 +45,10 @@ class Bootstrap {
     }
 
     public static function chroot() {
-        $rootPath = dirname(static::findParentPath('module'));
+        if(($path = static::findParentPath('module'))) {
+            $rootPath = dirname($path);
+        }
+        
         chdir($rootPath);
     }
 

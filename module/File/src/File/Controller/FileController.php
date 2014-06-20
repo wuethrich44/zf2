@@ -78,7 +78,6 @@ class FileController extends AbstractActionController {
             if (!$adapter->isValid()) {
                 $dataError = $adapter->getMessages();
                 array_merge($dataError, $adapter->getErrors());
-                $error = array();
                 foreach ($dataError as $key => $row) {
                     echo $row;
                 }
@@ -92,8 +91,14 @@ class FileController extends AbstractActionController {
                 if ($adapter->receive()) {
                     $subjectID = $data['subject'];
                     $categoryID = $data['category'];
+                    $dbdata = array();
                     $dbdata['fileName'] = $data['file']['name'];
-                    $dbdata['url'] = basename($adapter->getFileName());
+                    $filename = $adapter->getFileName();
+                    if(is_array($filename)) {
+                        $dbdata['url'] = basename(current($filename));
+                    } else {
+                        $dbdata['url'] = basename($filename);
+                    }
 
                     $file->exchangeArray($dbdata);
 
