@@ -38,7 +38,6 @@ class CategoryController extends AbstractActionController {
      * @return ViewModel
      */
     public function addAction() {
-        // Check Login
         if (!$this->zfcUserAuthentication()->hasIdentity()) {
             return $this->redirect()->toRoute('zfcuser');
         }
@@ -53,7 +52,6 @@ class CategoryController extends AbstractActionController {
             $form->setData($request->getPost());
 
             if ($form->isValid()) {
-                // FIXME check if name already exists
                 $category->exchangeArray($form->getData());
                 $this->getCategoryTable()->saveCategory($category);
 

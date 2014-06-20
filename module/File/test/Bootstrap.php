@@ -45,11 +45,13 @@ class Bootstrap {
     }
 
     public static function chroot() {
-        if(($path = static::findParentPath('module'))) {
+        if (($path = static::findParentPath('module'))) {
             $rootPath = dirname($path);
         }
-        
-        chdir($rootPath);
+
+        if (isset($rootPath)) {
+            chdir($rootPath);
+        }
     }
 
     public static function getServiceManager() {

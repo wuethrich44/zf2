@@ -6,14 +6,16 @@ use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 
 class CategoryControllerTest extends AbstractHttpControllerTestCase {
 
+    protected $traceError = true;
+
     public function setUp() {
         $this->setApplicationConfig(
-                include dirname(dirname(dirname(dirname(dirname(__DIR__))))) . '/config/application.config.php'
+                include 'config' . DIRECTORY_SEPARATOR . 'application.config.php'
         );
         parent::setUp();
     }
 
-    protected function ZfcLoginMock() {
+    protected function mockZfcLogin() {
         $ZfcAuthService = $this->getMock('ZfcUser\Authentication\Storage\Db');
 
         $ZfcUserMock = $this->getMock('ZfcUser\Entity\User');
@@ -34,14 +36,18 @@ class CategoryControllerTest extends AbstractHttpControllerTestCase {
         $this->getApplicationServiceLocator()->setService('ZfcUser\Authentication\Storage\Db', $ZfcAuthService);
     }
 
-    protected function CategoryTableMock() {
+    protected function mockCategoryTable() {
         $categoryTableMock = $this->getMockBuilder('File\Model\CategoryTable')
                 ->disableOriginalConstructor()
                 ->getMock();
 
-        $categoryTableMock->expects($this->once())
+        $categoryTableMock->expects($this->any())
                 ->method('fetchAll')
                 ->will($this->returnValue(array()));
+
+        $categoryTableMock->expects($this->any())
+                ->method('saveCategory')
+                ->will($this->returnValue(null));
 
         $serviceManager = $this->getApplicationServiceLocator();
         $serviceManager->setAllowOverride(true);
@@ -49,9 +55,9 @@ class CategoryControllerTest extends AbstractHttpControllerTestCase {
     }
 
     public function testIndexActionCanBeAccessed() {
-        $this->CategoryTableMock();
+        $this->mockCategoryTable();
 
-        $this->ZfcLoginMock();
+        $this->mockZfcLogin();
 
         $this->dispatch('/category');
         $this->assertResponseStatusCode(200);
@@ -60,6 +66,30 @@ class CategoryControllerTest extends AbstractHttpControllerTestCase {
         $this->assertControllerName('File\Controller\Category');
         $this->assertControllerClass('CategoryController');
         $this->assertMatchedRouteName('category');
+    }
+
+    public function testAddActionRedirectsAfterValidPost() {
+        $this->mockZfcLogin();
+        $categoryTableMock = $this->getMockBuilder('File\Model\CategoryTable')
+                ->disableOriginalConstructor()
+                ->getMock();
+
+        $categoryTableMock->expects($this->once())
+                ->method('saveCategory')
+                ->will($this->returnValue(null));
+
+        $serviceManager = $this->getApplicationServiceLocator();
+        $serviceManager->setAllowOverride(true);
+        $serviceManager->setService('File\Model\CategoryTable', $categoryTableMock);
+
+        $postData = array(
+            'categoryID' => '',
+            'name' => 'Led Zeppelin',
+        );
+        $this->dispatch('/category/add', 'POST', $postData);
+        $this->assertResponseStatusCode(302);
+
+        $this->assertRedirectTo('/category/');
     }
 
 }
