@@ -13,7 +13,7 @@ class CategoryControllerTest extends AbstractHttpControllerTestCase {
         parent::setUp();
     }
 
-    protected function ZfcMockLogin() {
+    protected function ZfcLoginMock() {
         $ZfcAuthService = $this->getMock('ZfcUser\Authentication\Storage\Db');
 
         $ZfcUserMock = $this->getMock('ZfcUser\Entity\User');
@@ -51,7 +51,7 @@ class CategoryControllerTest extends AbstractHttpControllerTestCase {
     public function testIndexActionCanBeAccessed() {
         $this->CategoryTableMock();
 
-        $this->ZfcMockLogin();
+        $this->ZfcLoginMock();
 
         $this->dispatch('/category');
         $this->assertResponseStatusCode(200);
