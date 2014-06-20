@@ -8,7 +8,7 @@ class AlbumControllerTest extends AbstractHttpControllerTestCase {
 
     public function setUp() {
         $this->setApplicationConfig(
-                include '/config/application.config.php'
+                include dirname(dirname(dirname(dirname(dirname(__DIR__))))) . '/config/application.config.php'
         );
         parent::setUp();
     }
