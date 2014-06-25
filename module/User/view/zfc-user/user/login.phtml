@@ -5,9 +5,6 @@ $form = $this->loginForm;
 $form->prepare();
 $form->setAttribute('action', $this->url('zfcuser/login'));
 $form->setAttribute('method', 'post');
-$form->get('identity')->setAttribute('class', 'form-control');
-$form->get('credential')->setAttribute('class', 'form-control');
-$form->get('submit')->setAttribute('class', 'btn btn-default');
 ?>
 
 <?php echo $this->form()->openTag($form) ?>
