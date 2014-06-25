@@ -15,7 +15,7 @@
     $(document).ready(function() {
         var form = $("<form>").attr({"action": "#"}),
                 div = $("<div>").attr({"class": "form-group"}),
-                input = $("<input>").attr({"class": "form-control", "type": "text", "placeholder": "Search..."});
+                input = $("<input>").attr({"class": "form-control", "type": "text", "placeholder": "Search...", "autofocus": "true"});
 
         $(div).append(input);
         $(form).append(div).prependTo(".nav-stacked");
