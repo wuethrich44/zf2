@@ -191,11 +191,7 @@ class FileController extends AbstractActionController {
         if (!$this->uploadPath) {
             // Fetch Configuration from Module Config
             $config = $this->getServiceLocator()->get('Config');
-            $uploadPath = $config['module_config']['upload_location'];
-            if(!is_dir($uploadPath)) {
-                mkdir($uploadPath);
-            }
-            $this->uploadPath = $uploadPath;
+            $this->uploadPath = $config['module_config']['upload_location'];
         }
         return $this->uploadPath;
     }
