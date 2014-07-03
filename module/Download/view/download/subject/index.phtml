@@ -1,7 +1,7 @@
 <ul class="nav nav-pills nav-stacked">
     <?php
     foreach ($subjects as $subject) :
-        $url = $this->url('download', array('subject' => $subject->subjectID));
+        $url = $this->url('download', array('subject' => $subject->abbreviation));
         ?>
         <li>
             <a href="<?php echo $url ?>" class="list-group-item"> 

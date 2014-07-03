@@ -47,9 +47,29 @@ class CategoryTable {
         }
         return $row;
     }
+    
+        /**
+     * Return a the cateogryID by category name
+     * 
+     * @param String $name 
+     * @return int subjectID
+     */
+    public function getCategoryID($name) {
+        $rowset = $this->tableGateway->select(
+                array(
+                    'name' => $name
+        ));
+        $row = $rowset->current();
+        
+        if(!$row) {
+            return 0;
+        }
+        
+        return $row->categoryID;
+    }
 
     /**
-     * Return all modules which include files
+     * Return all categories which include files
      *
      * @param unknown $moduleID            
      * @return \Zend\Db\ResultSet\ResultSet with Categories

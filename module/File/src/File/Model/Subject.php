@@ -123,11 +123,21 @@ class Subject implements InputFilterAwareInterface {
                         'required' => true,
                         'filters' => array(
                             array(
-                                'name' => 'StripTags'
+                                'name' => 'StripTags',
                             ),
                             array(
-                                'name' => 'StringTrim'
-                            )
+                                'name' => 'StringTrim',
+                            ),
+                            array(
+                                'name' => 'StringToUpper',
+                            ),
+                            array(
+                                'name' => 'PregReplace',
+                                'options' => array(
+                                    'pattern'     => '/[^a-zA-Z0-9_+]/',
+                                    'replacement' => '-',
+                                ),
+                            ),
                         ),
                         'validators' => array(
                             array(
@@ -145,7 +155,7 @@ class Subject implements InputFilterAwareInterface {
                                     'field' => 'name',
                                     'adapter' => $this->dbAdapter
                                 )
-                            )
+                            ),
                         )
             ));
 

@@ -5,7 +5,7 @@
         </a>
     </li>
     <li>
-        <a href="<?php echo $this->url('download', array('subject' => $subject->subjectID)); ?>">
+        <a href="<?php echo $this->url('download', array('subject' => $subject->abbreviation)); ?>">
             <?php echo $this->escapeHtml($subject->abbreviation); ?>
         </a>
     </li>
@@ -31,7 +31,7 @@
 <ul class="nav nav-pills nav-stacked">
     <?php foreach ($files as $file) : ?>  
     <li>
-        <a href="<?= $this->url('download', array('subject' => $subject->subjectID, 'category' => $category->categoryID, 'file' => $file->id)) ?>" class="list-group-item"> 
+        <a href="<?= $this->url('download', array('subject' => $subject->abbreviation, 'category' => $category->name, 'file' => $file->id)) ?>" class="list-group-item"> 
             <span class="glyphicon glyphicon-file"></span>
             <?php echo $this->escapeHtml($file->name); ?>
 
