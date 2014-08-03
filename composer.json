@@ -4,10 +4,11 @@
     "require": {
         "php": ">=5.3.3",
         "zendframework/zendframework": "2.3.*",
-        "zf-commons/zfc-user": "1.2.1",
-        "zf-commons/zfc-admin": "v0.2.0",
+        "zf-commons/zfc-user": "1.2.*",
+        "zf-commons/zfc-admin": "0.2.*",
         "danielss89/zfc-user-admin": "dev-master",
-        "neilime/zf2-twb-bundle": "2.3.0"
+        "neilime/zf2-twb-bundle": "2.3.*",
+        "bjyoungblood/bjy-authorize": "1.4.*"
     },
     "require-dev": {
         "zendframework/zftool": "dev-master",

@@ -2,14 +2,18 @@
 
 return array(
     'modules' => array(
-        'Application',
-        'Download',
-        'File',
+        // 3rd part modules
         'TwbBundle',
         'ZfcBase',
         'ZfcAdmin',
         'ZfcUser',       
         'ZfcUserAdmin',
+        'BjyAuthorize',
+        
+        // Custom modules
+        'Application',
+        'Download',
+        'File',
         'User',
     ),
     'module_listener_options' => array(
