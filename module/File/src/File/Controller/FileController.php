@@ -23,10 +23,6 @@ class FileController extends AbstractActionController {
     }
 
     public function addAction() {
-        if (!$this->zfcUserAuthentication()->hasIdentity()) {
-            return $this->redirect()->toRoute('zfcuser');
-        }
-
         $form = new UploadForm();
 
         $optionSubject = $this->getSubjectTable()->getSubjectsForSelect();
@@ -130,11 +126,6 @@ class FileController extends AbstractActionController {
      * @return \Zend\Http\Response|null
      */
     public function deleteAction() {
-        // Check Login
-        if (!$this->zfcUserAuthentication()->hasIdentity()) {
-            return $this->redirect()->toRoute('zfcuser');
-        }
-
         $fileID = (int) $this->params()->fromRoute('id', 0);
         $request = $this->getRequest();
 

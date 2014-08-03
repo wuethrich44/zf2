@@ -21,11 +21,6 @@ class CategoryController extends AbstractActionController {
      * @see \Zend\Mvc\Controller\AbstractActionController::indexAction()
      */
     public function indexAction() {
-        // Check Login
-        if (!$this->zfcUserAuthentication()->hasIdentity()) {
-            return $this->redirect()->toRoute('zfcuser');
-        }
-
         return new ViewModel(
                 array(
             'categories' => $this->getCategoryTable()->fetchAll()
@@ -38,10 +33,6 @@ class CategoryController extends AbstractActionController {
      * @return ViewModel
      */
     public function addAction() {
-        if (!$this->zfcUserAuthentication()->hasIdentity()) {
-            return $this->redirect()->toRoute('zfcuser');
-        }
-
         $form = new CategoryForm();
         $form->get('submit')->setValue('Add');
 
@@ -69,11 +60,6 @@ class CategoryController extends AbstractActionController {
      * @return ViewModel
      */
     public function editAction() {
-        // Check Login
-        if (!$this->zfcUserAuthentication()->hasIdentity()) {
-            return $this->redirect()->toRoute('zfcuser');
-        }
-
         $categoryID = (int) $this->params()->fromRoute('id', 0);
         if (!$categoryID) {
             return $this->redirect()->toRoute('category', array(
@@ -119,11 +105,6 @@ class CategoryController extends AbstractActionController {
      * @return ViewModel
      */
     public function deleteAction() {
-        // Check Login
-        if (!$this->zfcUserAuthentication()->hasIdentity()) {
-            return $this->redirect()->toRoute('zfcuser');
-        }
-
         $categoryID = (int) $this->params()->fromRoute('id', 0);
         if (!$categoryID) {
             return $this->redirect()->toRoute('category');

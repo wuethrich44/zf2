@@ -13,94 +13,92 @@
     <small class="pull-right"><a href="https://twitter.com/intent/tweet?screen_name=student_box" data-related="student_box" target="_blank">Verbesserungen?</a></small>
 </ol>
 
-<?php if ($this->zfcUserIdentity()): ?>
+<div class="alert alert-danger hidden">
+    <?php //TODO This div will overwrite if a error occur ?>
+    <p><strong>Achtung!</strong> Willst du die Datei <em><span id="filename"></span></em> wirklich löschen?</p>
+    <p>
+        <button type="button" class="btn btn-danger" id="confirm">Löschen</button>
+        <button type="button" class="btn btn-default" id="quit">Abbrechen</button>
+    </p>
+</div>
 
-    <div class="alert alert-danger hidden">
-        <?php //TODO This div will overwrite if a error occur ?>
-        <p><strong>Achtung!</strong> Willst du die Datei <em><span id="filename"></span></em> wirklich löschen?</p>
-        <p>
-            <button type="button" class="btn btn-danger" id="confirm">Löschen</button>
-            <button type="button" class="btn btn-default" id="quit">Abbrechen</button>
-        </p>
-    </div>
-
-    <div class="alert hidden" id="message"></div>
-
-<?php endif; ?>
+<div class="alert hidden" id="message"></div>
 
 <ul class="nav nav-pills nav-stacked">
     <?php foreach ($files as $file) : ?>  
-    <li>
-        <a href="<?= $this->url('download', array('subject' => $subject->abbreviation, 'category' => $category->name, 'file' => $file->id)) ?>" class="list-group-item"> 
-            <span class="glyphicon glyphicon-file"></span>
-            <?php echo $this->escapeHtml($file->name); ?>
+        <li>
+            <a href="<?= $this->url('download', array('subject' => $subject->abbreviation, 'category' => $category->name, 'file' => $file->id)) ?>" class="list-group-item"> 
+                <span class="glyphicon glyphicon-file"></span>
+                <?php echo $this->escapeHtml($file->name); ?>
 
-            <?php if ($this->zfcUserIdentity()): ?>
                 <button type="button" class="btn btn-danger btn-xs delete" data-id="<?php echo $this->escapeHtml($file->id); ?>" data-name="<?php echo $this->escapeHtml($file->name); ?>">
                     Delete
                 </button>
-            <?php endif; ?>
 
-            <span class="badge"><?php echo $this->escapeHtml($file->downloadCount); ?></span>   
-        </a>
-    </li>
+                <span class="badge"><?php echo $this->escapeHtml($file->downloadCount); ?></span>   
+            </a>
+        </li>
     <?php endforeach; ?>
 </ul>
 
-<?php if ($this->zfcUserIdentity()): ?>
+<script>
+    $('document').ready(function() {
 
-    <script>
-        $('document').ready(function() {
-
-            $('.list-group-item').click(function(event) {
-                //TODO refresh Downloadcount with AJAX
-            });
-
-            $('.delete').click(function(event) {
-                event.preventDefault();
-
-                fileID = $(this).attr('data-id');
-                fileName = $(this).attr('data-name');
-
-                $('#message').addClass('hidden');
-
-                $('#filename').text(fileName);
-
-                $('.alert-danger').removeClass('hidden');
-                //Pass fileID to alert-danger as a attribute
-                $('.alert-danger').attr('data-id', fileID);
-            });
-
-            $('#quit').click(function(event) {
-                $('.alert-danger').addClass('hidden');
-            });
-
-            $('#confirm').click(function(event) {
-                $('.alert-danger').addClass('hidden');
-
-                fileID = $('.alert-danger').attr('data-id');
-                //Pass fileID from alert-danger to controller
-                url = '<?php echo $this->url('file', array('action' => 'delete')); ?>' + '/' + fileID;
-
-                $.post(url, function(data) {
-                    if (data.state) {
-                        //Remove the deleted entry
-                        $('button[data-id=' + fileID + ']').parent().remove();
-                        $('#message').removeClass('alert-danger');
-                        $('#message').addClass('alert-success');
-                        $('#message').html('<p><strong>Die Datei wurde erfolgreich gelöscht!</strong></p>');
-                        $('#message').removeClass('hidden');
-                    } else {
-                        $('#message').removeClass('alert-success');
-                        $('#message').addClass('alert-danger');
-                        $('#message').html('<p><strong>Fehler!</strong> Die Datei konnte nicht gelöscht werden</p>');
-                        $('#message').removeClass('hidden');
-                    }
-                }, "json");
-            });
-
+        $('.list-group-item').click(function(event) {
+            //TODO refresh Downloadcount with AJAX
         });
-    </script>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 
-<?php endif; ?>
+        $('.delete').click(function(event) {
+            event.preventDefault();
+
+            fileID = $(this).attr('data-id');
+            fileName = $(this).attr('data-name');
+
+            $('#message').addClass('hidden');
+
+            $('#filename').text(fileName);
+
+            $('.alert-danger').removeClass('hidden');
+            //Pass fileID to alert-danger as a attribute
+            $('.alert-danger').attr('data-id', fileID);
+        });
+
+        $('#quit').click(function(event) {
+            $('.alert-danger').addClass('hidden');
+        });
+
+        $('#confirm').click(function(event) {
+            $('.alert-danger').addClass('hidden');
+
+            fileID = $('.alert-danger').attr('data-id');
+            //Pass fileID from alert-danger to controller
+            url = '<?php echo $this->url('file', array('action' => 'delete')); ?>' + '/' + fileID;
+
+            $.post(url, function(data) {
+                if (data.state) {
+                    //Remove the deleted entry
+                    $('button[data-id=' + fileID + ']').parent().remove();
+                    $('#message').removeClass('alert-danger');
+                    $('#message').addClass('alert-success');
+                    $('#message').html('<p><strong>Die Datei wurde erfolgreich gelöscht!</strong></p>');
+                    $('#message').removeClass('hidden');
+                } else {
+                    $('#message').removeClass('alert-success');
+                    $('#message').addClass('alert-danger');
+                    $('#message').html('<p><strong>Fehler!</strong> Die Datei konnte nicht gelöscht werden</p>');
+                    $('#message').removeClass('hidden');
+                }
+            }, "json");
+        });
+
+    });
+</script>
+<script>!function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+        if (!d.getElementById(id)) {
+            js = d.createElement(s);
+            js.id = id;
+            js.src = p + '://platform.twitter.com/widgets.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }
+    }(document, 'script', 'twitter-wjs');</script>

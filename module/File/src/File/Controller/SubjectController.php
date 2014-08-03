@@ -14,11 +14,6 @@ class SubjectController extends AbstractActionController {
     protected $subjectTable;
 
     public function indexAction() {
-        // Check Login
-        if (!$this->zfcUserAuthentication()->hasIdentity()) {
-            return $this->redirect()->toRoute('zfcuser');
-        }
-
         return new ViewModel(
                 array(
             'subjects' => $this->getSubjectTable()->fetchAll()
@@ -31,11 +26,6 @@ class SubjectController extends AbstractActionController {
      * @return ViewModel
      */
     public function addAction() {
-        // Check Login
-        if (!$this->zfcUserAuthentication()->hasIdentity()) {
-            return $this->redirect()->toRoute('zfcuser');
-        }
-
         $form = new SubjectForm();
         $form->get('submit')->setValue('Add');
 
@@ -63,11 +53,6 @@ class SubjectController extends AbstractActionController {
      * @return ViewModel
      */
     public function editAction() {
-        // Check Login
-        if (!$this->zfcUserAuthentication()->hasIdentity()) {
-            return $this->redirect()->toRoute('zfcuser');
-        }
-
         $subjectID = (int) $this->params()->fromRoute('id', 0);
         if (!$subjectID) {
             return $this->redirect()->toRoute('subject', array(
@@ -112,11 +97,6 @@ class SubjectController extends AbstractActionController {
      * @return ViewModel
      */
     public function deleteAction() {
-        // Check Login
-        if (!$this->zfcUserAuthentication()->hasIdentity()) {
-            return $this->redirect()->toRoute('zfcuser');
-        }
-
         $subjectID = (int) $this->params()->fromRoute('id', 0);
         if (!$subjectID) {
             return $this->redirect()->toRoute('subject');
