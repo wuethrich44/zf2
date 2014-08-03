@@ -1,6 +1,12 @@
 <?php
 
 return array(
+    'view_manager' => array(
+        'template_path_stack' => array(
+            'zfcuser' => __DIR__ . '/../view',
+            'zfcuseradmin' => __DIR__ . '/../view',
+        ),
+    ),
     'translator' => array(
         'translation_file_patterns' => array(
             array(
@@ -10,10 +16,11 @@ return array(
             ),
         ),
     ),
-    'view_manager' => array(
-        'template_path_stack' => array(
-            'zfcuser' => __DIR__ . '/../view',
-            'zfcuseradmin' => __DIR__ . '/../view',
+    'bjyauthorize' => array(
+        'guards' => array(
+            'BjyAuthorize\Guard\Controller' => array(
+                array('controller' => 'zfcuser', 'roles' => array()),
+            ),
         ),
     ),
 );

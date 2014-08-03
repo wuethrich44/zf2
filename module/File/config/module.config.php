@@ -59,4 +59,13 @@ return array(
             'album' => __DIR__ . '/../view',
         ),
     ),
+    'bjyauthorize' => array(
+        'guards' => array(
+            'BjyAuthorize\Guard\Controller' => array(
+                array('controller' => 'File\Controller\File', 'roles' => array()),
+                array('controller' => 'File\Controller\Subject', 'roles' => array()),
+                array('controller' => 'File\Controller\Category', 'roles' => array()),
+            ),
+        ),
+    ),
 );

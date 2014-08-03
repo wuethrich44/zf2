@@ -30,4 +30,11 @@ return array(
             'download/file/index' => __DIR__ . '/../view/download/file/index.phtml',
         ),
     ),
+    'bjyauthorize' => array(
+        'guards' => array(
+            'BjyAuthorize\Guard\Controller' => array(
+                 array('controller' => 'Download\Controller\Download', 'roles' => array()),
+            ),
+        ),
+    ),
 );
