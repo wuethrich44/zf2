@@ -1,0 +1,13 @@
+<?php
+$form = $this->editUserForm;
+$form->prepare();
+$form->setAttribute('action', $this->url('zfcadmin/zfcuseradmin/edit', array('userId' => $this->userId)));
+$form->setAttribute('method', 'post');
+?>
+<div class="row">
+    <div class="col-md-4">
+        <h1><?php echo $this->translate('Edit user') ?></h1>
+
+        <?php include '_form.phtml'; ?>
+    </div>
+</div>
