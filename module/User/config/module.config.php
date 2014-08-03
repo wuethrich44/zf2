@@ -6,8 +6,8 @@ return array(
             array(
                 'type' => 'gettext',
                 'base_dir' => 'vendor/zf-commons/zfc-user/src/ZfcUser/language',
-                'pattern' => '%s.mo'
-            )
+                'pattern' => '%s.mo',
+            ),
         ),
     ),
     'view_manager' => array(
@@ -15,5 +15,5 @@ return array(
             'zfcuser' => __DIR__ . '/../view',
             'zfcuseradmin' => __DIR__ . '/../view',
         ),
-    )
+    ),
 );
