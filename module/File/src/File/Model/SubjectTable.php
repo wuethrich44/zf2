@@ -47,6 +47,26 @@ class SubjectTable {
         }
         return $row;
     }
+    
+    /**
+     * Return a the subjectID by abbreviation
+     * 
+     * @param String $abbreviation 
+     * @return int subjectID
+     */
+    public function getSubjectID($abbreviation) {
+        $rowset = $this->tableGateway->select(
+                array(
+                    'abbreviation' => $abbreviation
+        ));
+        $row = $rowset->current();
+        
+        if(!$row) {
+            return 0;
+        }
+        
+        return $row->subjectID;
+    }
 
     /**
      * Return all subjects which include files

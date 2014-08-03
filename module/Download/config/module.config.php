@@ -21,12 +21,7 @@ return array(
             'download' => array(
                 'type' => 'segment',
                 'options' => array(
-                    'route' => '/download[/:subject][/:category][/:file]',
-                    'constraints' => array(
-                        'subject' => '[0-9]+',
-                        'category' => '[0-9]+',
-                        'file' => '[0-9]+',
-                    ),
+                    'route' => '/[:subject][/:category][/:file]',
                     'defaults' => array(
                         'controller' => 'Download\Controller\Download',
                         'action' => 'index',

@@ -12,7 +12,7 @@
 <ul class="nav nav-pills nav-stacked">
     <?php
     foreach ($categories as $category) :
-        $url = $this->url('download', array('subject' => $subject->subjectID, 'category' => $category->categoryID));
+        $url = $this->url('download', array('subject' => $subject->abbreviation, 'category' => $category->name));
     ?>
     <li>
         <a href="<?php echo $this->escapeHtml($url); ?>" class="list-group-item"> 

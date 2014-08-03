@@ -1,0 +1,5 @@
+<?php echo $this->form($form, null); ?>
+
+<?php if ($this->redirect): ?>
+    <input type="hidden" name="redirect" value="<?php echo $this->redirect ?>">
+<?php endif ?>

@@ -21,8 +21,10 @@ class DownloadController extends AbstractActionController {
      * @see \Zend\Mvc\Controller\AbstractActionController::indexAction()
      */
     public function indexAction() {
-        $subjectID = (int) $this->params()->fromRoute('subject');
-        $categoryID = (int) $this->params()->fromRoute('category');
+        $subjectID = (int) $this->getSubjectTable()->getSubjectID(
+                        $this->params()->fromRoute('subject'));
+        $categoryID = (int) $this->getCategoryTable()->getCategoryID(
+                        $this->params()->fromRoute('category'));
         $fileID = (int) $this->params()->fromRoute('file');
 
         if ($subjectID and ! $categoryID) {

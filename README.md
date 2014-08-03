@@ -26,6 +26,10 @@ Entwicklungsumgebung einrichten:
 
 Als Datenbank verwenden wir eine MySql-Datenbank. Das Datenbankschema befindet sich im Ordner [data](data/). Dort findest du einerseits die [Struktur](data/schema.mysql.sql) und alle [Module](data/subjects.mysql.sql).
 
+Damit die Exceptions angezeigt werden muss beim Webserver eine Umgebungsvariable gesetzt werden. Dazu muss z.B. beim Apache in der httpd.conf folgende Zeile hinzugefügt werden.
+
+    SetEnv "APP_ENV" "development"
+
 ## Uploads
 
 Wenn du deine eigenen Dokumente veröffentlichen willst, sende einfach eine Mail an upload@studentbox.ch.

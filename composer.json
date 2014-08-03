@@ -1,14 +1,17 @@
 {
-	"name" : "studentbox/website",
-	"description" : "Einfach studieren an der HSLU",
-	"require" : {
-		"php" : ">=5.3.3",
-		"zendframework/zendframework" : "2.3.*",
-		"zf-commons/zfc-user" : "1.1.*"
-	},
-	"require-dev" : {
-		"zendframework/zftool" : "dev-master",
-		"phpunit/phpunit" : "3.7.*"
-	},
-	"minimum-stability" : "dev"
+    "name": "studentbox/website",
+    "description": "Einfach studieren an der HSLU",
+    "require": {
+        "php": ">=5.3.3",
+        "zendframework/zendframework": "2.3.*",
+        "zf-commons/zfc-user": "1.2.1",
+        "zf-commons/zfc-admin": "v0.2.0",
+        "danielss89/zfc-user-admin": "dev-master",
+        "neilime/zf2-twb-bundle": "2.3.0"
+    },
+    "require-dev": {
+        "zendframework/zftool": "dev-master",
+        "phpunit/phpunit": "3.7.*"
+    },
+    "minimum-stability": "dev"
 }

@@ -5,6 +5,7 @@ namespace File\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\File\Transfer\Adapter\Http;
 use Zend\Validator\File\Size;
+use Zend\Validator\File\Extension;
 use Zend\Filter\File\Rename;
 use File\Model\File;
 use File\Form\UploadForm;
@@ -57,6 +58,7 @@ class FileController extends AbstractActionController {
                     array(
                 'max' => $this->getMaxFileSize()
             ));
+            $extension = new Extension(array('zip', 'pdf'));
 
             // Filter für Zufallsnamen
             $filter = new Rename(
@@ -68,11 +70,12 @@ class FileController extends AbstractActionController {
             $adapter = new Http();
             $adapter->setValidators(
                     array(
-                        $size
+                        $size,
+                        $extension,
             ));
             $adapter->setFilters(
                     array(
-                        $filter
+                        $filter,
             ));
 
             if (!$adapter->isValid()) {
@@ -94,7 +97,7 @@ class FileController extends AbstractActionController {
                     $dbdata = array();
                     $dbdata['fileName'] = $data['file']['name'];
                     $filename = $adapter->getFileName();
-                    if(is_array($filename)) {
+                    if (is_array($filename)) {
                         $dbdata['url'] = basename(current($filename));
                     } else {
                         $dbdata['url'] = basename($filename);
@@ -191,7 +194,11 @@ class FileController extends AbstractActionController {
         if (!$this->uploadPath) {
             // Fetch Configuration from Module Config
             $config = $this->getServiceLocator()->get('Config');
-            $this->uploadPath = $config['module_config']['upload_location'];
+            $uploadPath = $config['module_config']['upload_location'];
+            if (!is_dir($uploadPath)) {
+                mkdir($uploadPath);
+            }
+            $this->uploadPath = $uploadPath;
         }
         return $this->uploadPath;
     }

@@ -87,11 +87,11 @@ class Category implements InputFilterAwareInterface {
                         'required' => true,
                         'filters' => array(
                             array(
-                                'name' => 'StripTags'
+                                'name' => 'StripTags',
                             ),
                             array(
-                                'name' => 'StringTrim'
-                            )
+                                'name' => 'StringTrim',
+                            ),
                         ),
                         'validators' => array(
                             array(
@@ -99,15 +99,18 @@ class Category implements InputFilterAwareInterface {
                                 'options' => array(
                                     'encoding' => 'UTF-8',
                                     'min' => 1,
-                                    'max' => 100
+                                    'max' => 100,
                                 )
+                            ),
+                            array(
+                                'name' => 'Alnum',
                             ),
                             array(
                                 'name' => '\Zend\Validator\Db\NoRecordExists',
                                 'options' => array(
                                     'table' => 'categories',
                                     'field' => 'name',
-                                    'adapter' => $this->dbAdapter
+                                    'adapter' => $this->dbAdapter,
                                 )
                             )
                         )

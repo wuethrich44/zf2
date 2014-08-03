@@ -5,11 +5,12 @@
         </a>
     </li>
     <li>
-        <a href="<?php echo $this->url('download', array('subject' => $subject->subjectID)); ?>">
+        <a href="<?php echo $this->url('download', array('subject' => $subject->abbreviation)); ?>">
             <?php echo $this->escapeHtml($subject->abbreviation); ?>
         </a>
     </li>
     <li class="active"><?= $category->name ?></li>
+    <small class="pull-right"><a href="https://twitter.com/intent/tweet?screen_name=student_box" data-related="student_box" target="_blank">Verbesserungen?</a></small>
 </ol>
 
 <?php if ($this->zfcUserIdentity()): ?>
@@ -30,7 +31,7 @@
 <ul class="nav nav-pills nav-stacked">
     <?php foreach ($files as $file) : ?>  
     <li>
-        <a href="<?= $this->url('download', array('subject' => $subject->subjectID, 'category' => $category->categoryID, 'file' => $file->id)) ?>" class="list-group-item"> 
+        <a href="<?= $this->url('download', array('subject' => $subject->abbreviation, 'category' => $category->name, 'file' => $file->id)) ?>" class="list-group-item"> 
             <span class="glyphicon glyphicon-file"></span>
             <?php echo $this->escapeHtml($file->name); ?>
 
@@ -100,5 +101,6 @@
 
         });
     </script>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 
 <?php endif; ?>
