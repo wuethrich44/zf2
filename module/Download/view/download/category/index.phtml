@@ -17,6 +17,7 @@
     <li>
         <a href="<?php echo $this->escapeHtml($url); ?>" class="list-group-item"> 
             <?php echo $this->escapeHtml($category->name); ?>
+            <span class="badge"><?php echo $this->escapeHtml($category->fileCount); ?></span>
         </a>
     </li>
     <?php endforeach; ?>

@@ -14,6 +14,7 @@ return array(
         'ZfcBase',
         'ZfcUser',
         'User',
+        // 'EdpSuperluminal',
     ),
     'module_listener_options' => array(
         'module_paths' => array(

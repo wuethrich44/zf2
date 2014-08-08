@@ -10,6 +10,7 @@ class Category implements InputFilterAwareInterface {
 
     public $categoryID;
     public $name;
+    public $fileCount;
     protected $inputFilter;
     protected $dbAdapter;
 
@@ -21,6 +22,7 @@ class Category implements InputFilterAwareInterface {
     public function exchangeArray($data) {
         $this->categoryID = (!empty($data['categoryID'])) ? $data['categoryID'] : null;
         $this->name = (!empty($data['name'])) ? $data['name'] : null;
+        $this->fileCount = (!empty($data['fileCount'])) ? $data['fileCount'] : null;
     }
 
     /**
@@ -123,5 +125,3 @@ class Category implements InputFilterAwareInterface {
     }
 
 }
-
-?>
