@@ -15,9 +15,9 @@
         $url = $this->url('download', array('subject' => $subject->abbreviation, 'category' => $category->name));
     ?>
     <li>
-        <a href="<?php echo $this->escapeHtml($url); ?>" class="list-group-item"> 
+        <a href="<?php echo $this->escapeHtml($url); ?>" class="list-group-item shorten-long-text"> 
             <?php echo $this->escapeHtml($category->name); ?>
-            <span class="badge"><?php echo $this->escapeHtml($category->fileCount); ?></span>
+            <span class="badge hidden-xs"><?php echo $this->escapeHtml($category->fileCount); ?></span>
         </a>
     </li>
     <?php endforeach; ?>

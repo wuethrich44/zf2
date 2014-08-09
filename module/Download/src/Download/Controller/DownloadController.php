@@ -119,6 +119,13 @@ class DownloadController extends AbstractActionController {
         $response->setHeaders($headers);
         return $response;
     }
+    
+    /**
+     * Placeholder Upload
+     */
+    public function uploadAction() {
+        return new ViewModel();
+    }
 
     /**
      * Return the SubjectTableGateway

@@ -27,7 +27,17 @@ return array(
                         'action' => 'index',
                     )
                 )
-            )
+            ),
+            'upload' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/upload',
+                    'defaults' => array(
+                        'controller' => 'Download\Controller\Download',
+                        'action' => 'upload',
+                    )
+                )
+            ),
         )
     )
 );
