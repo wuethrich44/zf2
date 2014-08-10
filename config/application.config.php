@@ -2,19 +2,21 @@
 
 return array(
     'modules' => array(
-        // 3rd part modules
-        'TwbBundle',
-        'ZfcBase',
-        'ZfcAdmin',
-        'ZfcUser',       
-        'ZfcUserAdmin',
-        'BjyAuthorize',
-        
         // Custom modules
         'Application',
         'Download',
         'File',
+        // 3rd part modules
+        'TwbBundle',
+        'ZfcBase',
+        'ZfcAdmin',
+        'ZfcUser',
+        'ZfcUserAdmin',
+        'BjyAuthorize',
+        // Override
         'User',
+        'Admin',
+        'UserAdmin',
     ),
     'module_listener_options' => array(
         'module_paths' => array(
