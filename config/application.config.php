@@ -6,6 +6,7 @@ return array(
         'Application',
         'Download',
         'File',
+        'Subject',
         // 3rd part modules
         'TwbBundle',
         'ZfcBase',

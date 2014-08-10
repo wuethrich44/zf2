@@ -1,6 +1,6 @@
 <?php
 
-namespace File\Model;
+namespace Subject\Model;
 
 use Zend\Db\TableGateway\TableGateway;
 

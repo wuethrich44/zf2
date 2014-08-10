@@ -2,8 +2,6 @@
 
 namespace File;
 
-use File\Model\Subject;
-use File\Model\SubjectTable;
 use File\Model\Category;
 use File\Model\CategoryTable;
 use File\Model\File;
@@ -31,24 +29,6 @@ class Module {
     public function getServiceConfig() {
         return array(
             'factories' => array(
-                'File\Model\SubjectTable' => function ($sm) {
-            $tableGateway = $sm->get('SubjectTableGateway');
-            $table = new SubjectTable($tableGateway);
-            return $table;
-        },
-                'SubjectTableGateway' => function ($sm) {
-            $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
-            $resultSetPrototype = new ResultSet();
-            $resultSetPrototype->setArrayObjectPrototype(
-                    $sm->get('Subject'));
-            return new TableGateway('subjects', $dbAdapter, null, $resultSetPrototype);
-        },
-                'Subject' => function ($sm) {
-            $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
-            $subject = new Subject();
-            $subject->setDbAdapter($dbAdapter);
-            return $subject;
-        },
                 'File\Model\CategoryTable' => function ($sm) {
             $tableGateway = $sm->get('CategoryTableGateway');
             $table = new CategoryTable($tableGateway);

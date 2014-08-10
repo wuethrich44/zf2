@@ -5,7 +5,6 @@ return array(
         'invokables' => array(
             'File\Controller\File' => 'File\Controller\FileController',
             'File\Controller\Category' => 'File\Controller\CategoryController',
-            'File\Controller\Subject' => 'File\Controller\SubjectController',
         ),
     ),
     'router' => array(
@@ -38,20 +37,6 @@ return array(
                     ),
                 ),
             ),
-            'subject' => array(
-                'type' => 'segment',
-                'options' => array(
-                    'route' => '/subject[/][:action][/:id]',
-                    'constraints' => array(
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                        'id' => '[0-9]+',
-                    ),
-                    'defaults' => array(
-                        'controller' => 'File\Controller\Subject',
-                        'action' => 'index',
-                    ),
-                ),
-            ),
         ),
     ),
     'view_manager' => array(
@@ -63,7 +48,6 @@ return array(
         'guards' => array(
             'BjyAuthorize\Guard\Controller' => array(
                 array('controller' => 'File\Controller\File', 'roles' => array()),
-                array('controller' => 'File\Controller\Subject', 'roles' => array()),
                 array('controller' => 'File\Controller\Category', 'roles' => array()),
             ),
         ),

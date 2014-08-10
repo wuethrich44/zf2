@@ -1,12 +1,12 @@
 <?php
 
-namespace File\Controller;
+namespace Subject\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Zend\Validator\Db\NoRecordExists;
-use File\Form\SubjectForm;
-use File\Form\DeleteForm;
+use Subject\Form\SubjectForm;
+use Subject\Form\DeleteForm;
 
 class SubjectController extends AbstractActionController {
 
@@ -157,7 +157,7 @@ class SubjectController extends AbstractActionController {
     public function getSubjectTable() {
         if (!$this->subjectTable) {
             $sm = $this->getServiceLocator();
-            $this->subjectTable = $sm->get('File\Model\SubjectTable');
+            $this->subjectTable = $sm->get('Subject\Model\SubjectTable');
         }
         return $this->subjectTable;
     }
