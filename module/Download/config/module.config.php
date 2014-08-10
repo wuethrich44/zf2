@@ -18,6 +18,16 @@ return array(
                     ),
                 ),
             ),
+            'upload' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/upload',
+                    'defaults' => array(
+                        'controller' => 'Download\Controller\Download',
+                        'action' => 'upload',
+                    ),
+                ),
+            ),
         ),
     ),
     'view_manager' => array(
@@ -33,7 +43,7 @@ return array(
     'bjyauthorize' => array(
         'guards' => array(
             'BjyAuthorize\Guard\Controller' => array(
-                 array('controller' => 'Download\Controller\Download', 'roles' => array()),
+                array('controller' => 'Download\Controller\Download', 'roles' => array()),
             ),
         ),
     ),

@@ -17,6 +17,7 @@ return array(
         'User',
         'Admin',
         'UserAdmin',
+        // 'EdpSuperluminal',
     ),
     'module_listener_options' => array(
         'module_paths' => array(

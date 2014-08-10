@@ -3,6 +3,7 @@
 namespace File\Model;
 
 use Zend\Db\TableGateway\TableGateway;
+use Zend\Db\Sql\Expression;
 
 class CategoryTable {
 
@@ -71,19 +72,17 @@ class CategoryTable {
     /**
      * Return all categories which include files
      *
-     * @param unknown $moduleID            
+     * @param unknown $subjectID            
      * @return \Zend\Db\ResultSet\ResultSet with Categories
      */
-    public function getUsedCategories($moduleID) {
-        $moduleID = (int) $moduleID;
-
+    public function getUsedCategories($subjectID) {
+        $subjectID = (int) $subjectID;
+        
         $select = $this->tableGateway->getSql()
                 ->select()
-                ->join('files', 'categories.categoryID = files.categoryID')
-                ->where(
-                        array(
-                            'files.subjectID' => $moduleID
-                ))
+                ->columns(array('*', 'fileCount' => new Expression('COUNT(files.fileID)')))
+                ->join('files', 'categories.categoryID = files.categoryID', array())
+                ->where(array('files.subjectID' => $subjectID))
                 ->order('name')
                 ->group('categories.categoryID');
 

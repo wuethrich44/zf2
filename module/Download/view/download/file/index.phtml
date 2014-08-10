@@ -10,7 +10,7 @@
         </a>
     </li>
     <li class="active"><?= $category->name ?></li>
-    <small class="pull-right"><a href="https://twitter.com/intent/tweet?screen_name=student_box" data-related="student_box" target="_blank">Verbesserungen?</a></small>
+    <a href="<?php echo $this->url('upload') ?>" class="pull-right hidden-xs" style="text-decoration: none;"><span class="glyphicon glyphicon-upload"></span> <small>Upload</small></a>
 </ol>
 
 <div class="alert alert-danger hidden">
@@ -26,18 +26,16 @@
 
 <ul class="nav nav-pills nav-stacked">
     <?php foreach ($files as $file) : ?>  
-        <li>
-            <a href="<?= $this->url('download', array('subject' => $subject->abbreviation, 'category' => $category->name, 'file' => $file->id)) ?>" class="list-group-item"> 
-                <span class="glyphicon glyphicon-file"></span>
-                <?php echo $this->escapeHtml($file->name); ?>
-
+    <li>
+        <a href="<?= $this->url('download', array('subject' => $subject->abbreviation, 'category' => $category->name, 'file' => $file->id)) ?>" class="list-group-item shorten-long-text"> 
+            <span class="glyphicon glyphicon-file"></span>
+            <?php echo $this->escapeHtml($file->name); ?>
                 <button type="button" class="btn btn-danger btn-xs delete" data-id="<?php echo $this->escapeHtml($file->id); ?>" data-name="<?php echo $this->escapeHtml($file->name); ?>">
                     Delete
                 </button>
-
-                <span class="badge"><?php echo $this->escapeHtml($file->downloadCount); ?></span>   
-            </a>
-        </li>
+            <span class="badge hidden-xs"><?php echo $this->escapeHtml($file->downloadCount); ?></span>   
+        </a>
+    </li>
     <?php endforeach; ?>
 </ul>
 
@@ -93,12 +91,3 @@
 
     });
 </script>
-<script>!function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
-        if (!d.getElementById(id)) {
-            js = d.createElement(s);
-            js.id = id;
-            js.src = p + '://platform.twitter.com/widgets.js';
-            fjs.parentNode.insertBefore(js, fjs);
-        }
-    }(document, 'script', 'twitter-wjs');</script>
