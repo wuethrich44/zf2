@@ -153,7 +153,7 @@ $settings = array(
      * Accepted values: A valid route name within your application
      *
      */
-    //'login_redirect_route' => 'upload',
+    'login_redirect_route' => 'zfcadmin',
 
     /**
      * Logout Redirect Route
