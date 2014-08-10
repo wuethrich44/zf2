@@ -46,7 +46,7 @@ class CategoryController extends AbstractActionController {
                 $category->exchangeArray($form->getData());
                 $this->getCategoryTable()->saveCategory($category);
 
-                return $this->redirect()->toRoute('category');
+                return $this->redirect()->toRoute('zfcadmin/category');
             }
         }
         return array(
@@ -62,7 +62,7 @@ class CategoryController extends AbstractActionController {
     public function editAction() {
         $categoryID = (int) $this->params()->fromRoute('id', 0);
         if (!$categoryID) {
-            return $this->redirect()->toRoute('category', array(
+            return $this->redirect()->toRoute('zfcadmin/category', array(
                         'action' => 'add'
             ));
         }
@@ -70,7 +70,7 @@ class CategoryController extends AbstractActionController {
         try {
             $category = $this->getCategoryTable()->getCategory($categoryID);
         } catch (\Exception $ex) {
-            return $this->redirect()->toRoute('category', array(
+            return $this->redirect()->toRoute('zfcadmin/category', array(
                         'action' => 'index'
             ));
         }
@@ -89,7 +89,7 @@ class CategoryController extends AbstractActionController {
                 $this->getCategoryTable()->saveCategory($category);
 
                 // Redirect to list of categories
-                return $this->redirect()->toRoute('category');
+                return $this->redirect()->toRoute('zfcadmin/category');
             }
         }
 
@@ -107,7 +107,7 @@ class CategoryController extends AbstractActionController {
     public function deleteAction() {
         $categoryID = (int) $this->params()->fromRoute('id', 0);
         if (!$categoryID) {
-            return $this->redirect()->toRoute('category');
+            return $this->redirect()->toRoute('zfcadmin/category');
         }
 
         $form = new DeleteForm();
@@ -119,7 +119,7 @@ class CategoryController extends AbstractActionController {
 
             if ($no == 'no') {
                 // Redirect to list of categories
-                return $this->redirect()->toRoute('category');
+                return $this->redirect()->toRoute('zfcadmin/category');
             }
 
             if ($yes == 'yes') {
@@ -141,7 +141,7 @@ class CategoryController extends AbstractActionController {
                 if ($form->isValid()) {
                     $this->getCategoryTable()->deleteCategory($categoryID);
                     // Redirect to list of categories
-                    return $this->redirect()->toRoute('category');
+                    return $this->redirect()->toRoute('zfcadmin/category');
                 }
             }
         }

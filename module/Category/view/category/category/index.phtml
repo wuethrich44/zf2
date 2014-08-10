@@ -4,7 +4,7 @@ $this->headTitle($title);
 ?>
 <h1><?php echo $this->escapeHtml($title); ?></h1>
 <p>
-    <a href="<?php echo $this->url('category', array('action' => 'add')); ?>">
+    <a href="<?php echo $this->url('zfcadmin/category', array('action' => 'add')); ?>">
         <?php echo $this->escapeHtml('Add new category'); ?>
     </a>
 </p>
@@ -18,10 +18,10 @@ $this->headTitle($title);
         <tr>
             <td><?php echo $this->escapeHtml($category->name); ?></td>
             <td>
-                <a href="<?php echo $this->url('category', array('action' => 'edit', 'id' => $category->categoryID)); ?>">
+                <a href="<?php echo $this->url('zfcadmin/category', array('action' => 'edit', 'id' => $category->categoryID)); ?>">
                     <?php echo $this->translate('Edit'); ?>
                 </a>
-                <a href="<?php echo $this->url('category', array('action' => 'delete', 'id' => $category->categoryID)); ?>">
+                <a href="<?php echo $this->url('zfcadmin/category', array('action' => 'delete', 'id' => $category->categoryID)); ?>">
                     <?php echo $this->translate('Delete'); ?>
                 </a>
             </td>
