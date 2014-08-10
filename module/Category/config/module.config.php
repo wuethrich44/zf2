@@ -3,21 +3,21 @@
 return array(
     'controllers' => array(
         'invokables' => array(
-            'File\Controller\File' => 'File\Controller\FileController',
+            'Category\Controller\Category' => 'Category\Controller\CategoryController',
         ),
     ),
     'router' => array(
         'routes' => array(
-            'file' => array(
+            'category' => array(
                 'type' => 'segment',
                 'options' => array(
-                    'route' => '/file[/][:action][/:id]',
+                    'route' => '/category[/][:action][/:id]',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id' => '[0-9]+',
                     ),
                     'defaults' => array(
-                        'controller' => 'File\Controller\File',
+                        'controller' => 'Category\Controller\Category',
                         'action' => 'index',
                     ),
                 ),
@@ -26,13 +26,13 @@ return array(
     ),
     'view_manager' => array(
         'template_path_stack' => array(
-            'file' => __DIR__ . '/../view',
+            'category' => __DIR__ . '/../view',
         ),
     ),
     'bjyauthorize' => array(
         'guards' => array(
             'BjyAuthorize\Guard\Controller' => array(
-                array('controller' => 'File\Controller\File', 'roles' => array()),
+                array('controller' => 'Category\Controller\Category', 'roles' => array()),
             ),
         ),
     ),

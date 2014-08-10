@@ -1,9 +1,9 @@
 <?php
 
-namespace File;
+namespace Category;
 
-use File\Model\File;
-use File\Model\FileTable;
+use Category\Model\Category;
+use Category\Model\CategoryTable;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
 
@@ -27,19 +27,25 @@ class Module {
     public function getServiceConfig() {
         return array(
             'factories' => array(
-                'File\Model\FileTable' => function ($sm) {
-                    $tableGateway = $sm->get('FileTableGateway');
-                    $table = new FileTable($tableGateway);
+                'Category\Model\CategoryTable' => function ($sm) {
+                    $tableGateway = $sm->get('CategoryTableGateway');
+                    $table = new CategoryTable($tableGateway);
                     return $table;
                 },
-                'FileTableGateway' => function ($sm) {
+                'CategoryTableGateway' => function ($sm) {
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                     $resultSetPrototype = new ResultSet();
                     $resultSetPrototype->setArrayObjectPrototype(
-                    new File());
-                    return new TableGateway('files', $dbAdapter, null, $resultSetPrototype);
+                    $sm->get('Category'));
+                    return new TableGateway('categories', $dbAdapter, null, $resultSetPrototype);
                 },
-            ),
+                'Category' => function ($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $category = new Category();
+                    $category->setDbAdapter($dbAdapter);
+                    return $category;
+                },
+            )
         );
     }
 }

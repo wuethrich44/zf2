@@ -5,8 +5,9 @@ return array(
         // Custom modules
         'Application',
         'Download',
-        'File',
         'Subject',
+        'Category',
+        'File',
         // 3rd part modules
         'TwbBundle',
         'ZfcBase',

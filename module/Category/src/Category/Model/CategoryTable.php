@@ -1,6 +1,6 @@
 <?php
 
-namespace File\Model;
+namespace Category\Model;
 
 use Zend\Db\TableGateway\TableGateway;
 use Zend\Db\Sql\Expression;
