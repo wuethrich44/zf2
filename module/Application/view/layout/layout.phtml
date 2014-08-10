@@ -37,47 +37,14 @@
             ga('send', 'pageview');
         </script>
     </head>
-    <body style="padding-top: 70px;">
+    <body>
         <div class="container" id="wrap">
-            <nav class="navbar navbar-inverse navbar-fixed-top">
-                <div class="container">
-                    <div class="container-fluid">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#admin-menu">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                            <a class="navbar-brand" href="<?php echo $this->url('zfcuser') ?>">
-                            <?php echo $this->translate('Admin Area'); ?>
-                            </a>
-                        </div>
-
-                        <div class="collapse navbar-collapse" id="admin-menu">
-                            <?php
-                            echo $this->navigation('navigation')
-                                    ->menu()
-                                    ->setMinDepth(0)
-                                    ->setMaxDepth(0)
-                                    ->setUlClass('nav navbar-nav');
-                            ?>
-                            <div class="nav navbar-nav navbar-right">
-                                <li>
-                                    <a href="<?php echo $this->url('zfcuser/logout'); ?>">Logout</a>
-                                </li>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-
             <div class="row" id="main-row">
                 <div class="col-md-12">
                     <a href="/" id="title-link"><h1 id="title">StudentBox</h1></a>
                 </div>
                 <div class="col-md-6 col-md-offset-3 col-xs-12 col-xs-offset-0">
-<?php echo $this->content; ?>
+                    <?php echo $this->content; ?>
                 </div>
             </div>
             <!--Für Footer-->
@@ -91,13 +58,13 @@
                         <img style="height: 16px;" src="<?php echo $this->basePath() . '/img/GitHub-Mark-32px.png' ?>" alt="See us on Github">
                     </a>
 
-        <?php if (!$this->zfcUserIdentity()): ?>
+                    <?php if (!$this->zfcUserIdentity()): ?>
                         | <a href="<?= $this->url('zfcuser') ?>">Login</a>
-<?php endif; ?>
+                    <?php endif; ?>
                 </p>
             </div>
         </footer>
 
-<?php echo $this->inlineScript() ?>
+        <?php echo $this->inlineScript() ?>
     </body>
 </html>
