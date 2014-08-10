@@ -14,7 +14,7 @@ echo $this->headLink()->prependStylesheet($this->basePath() . '/css/dropzone.css
 <div class="panel panel-default">
 
     <?php
-    $form->setAttribute('action', $this->url('file', array('action' => 'add')));
+    $form->setAttribute('action', $this->url('zfcadmin/file', array('action' => 'add')));
     $form->prepare();
 
     echo $this->form()->openTag($form);

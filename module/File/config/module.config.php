@@ -8,17 +8,21 @@ return array(
     ),
     'router' => array(
         'routes' => array(
-            'file' => array(
-                'type' => 'segment',
-                'options' => array(
-                    'route' => '/file[/][:action][/:id]',
-                    'constraints' => array(
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                        'id' => '[0-9]+',
-                    ),
-                    'defaults' => array(
-                        'controller' => 'File\Controller\File',
-                        'action' => 'index',
+            'zfcadmin' => array(
+                'child_routes' => array(
+                    'file' => array(
+                        'type' => 'segment',
+                        'options' => array(
+                            'route' => '/file[/][:action][/:id]',
+                            'constraints' => array(
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id' => '[0-9]+',
+                            ),
+                            'defaults' => array(
+                                'controller' => 'File\Controller\File',
+                                'action' => 'index',
+                            ),
+                        ),
                     ),
                 ),
             ),
@@ -27,6 +31,31 @@ return array(
     'view_manager' => array(
         'template_path_stack' => array(
             'file' => __DIR__ . '/../view',
+        ),
+    ),
+    'navigation' => array(
+        'admin' => array(
+            array(
+                'label' => 'Upload',
+                'route' => 'zfcadmin/file',
+                'pages' => array(
+                    array(
+                        'label' => 'Add',
+                        'route' => 'zfcadmin/file',
+                        'action' => 'add',
+                    ),
+                    array(
+                        'label' => 'Edit',
+                        'route' => 'zfcadmin/file',
+                        'action' => 'edit',
+                    ),
+                    array(
+                        'label' => 'Delete',
+                        'route' => 'zfcadmin/file',
+                        'action' => 'delete',
+                    ),
+                ),
+            ),
         ),
     ),
     'bjyauthorize' => array(
