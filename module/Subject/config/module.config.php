@@ -8,17 +8,21 @@ return array(
     ),
     'router' => array(
         'routes' => array(
-            'subject' => array(
-                'type' => 'segment',
-                'options' => array(
-                    'route' => '/subject[/][:action][/:id]',
-                    'constraints' => array(
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                        'id' => '[0-9]+',
-                    ),
-                    'defaults' => array(
-                        'controller' => 'Subject\Controller\Subject',
-                        'action' => 'index',
+            'zfcadmin' => array(
+                'child_routes' => array(
+                    'subject' => array(
+                        'type' => 'segment',
+                        'options' => array(
+                            'route' => '/subject[/][:action][/:id]',
+                            'constraints' => array(
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id' => '[0-9]+',
+                            ),
+                            'defaults' => array(
+                                'controller' => 'Subject\Controller\Subject',
+                                'action' => 'index',
+                            ),
+                        ),
                     ),
                 ),
             ),
@@ -27,6 +31,31 @@ return array(
     'view_manager' => array(
         'template_path_stack' => array(
             'subject' => __DIR__ . '/../view',
+        ),
+    ),
+    'navigation' => array(
+        'admin' => array(
+            array(
+                'label' => 'Module',
+                'route' => 'zfcadmin/subject',
+                'pages' => array(
+                    array(
+                        'label' => 'Add',
+                        'route' => 'zfcadmin/subject',
+                        'action' => 'add',
+                    ),
+                    array(
+                        'label' => 'Edit',
+                        'route' => 'zfcadmin/subject',
+                        'action' => 'edit',
+                    ),
+                    array(
+                        'label' => 'Delete',
+                        'route' => 'zfcadmin/subject',
+                        'action' => 'delete',
+                    ),
+                ),
+            ),
         ),
     ),
     'bjyauthorize' => array(

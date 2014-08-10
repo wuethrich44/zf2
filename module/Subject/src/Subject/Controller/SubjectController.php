@@ -39,7 +39,7 @@ class SubjectController extends AbstractActionController {
                 $subject->exchangeArray($form->getData());
                 $this->getSubjectTable()->saveSubject($subject);
 
-                return $this->redirect()->toRoute('subject');
+                return $this->redirect()->toRoute('zfcadmin/subject');
             }
         }
         return array(
@@ -55,7 +55,7 @@ class SubjectController extends AbstractActionController {
     public function editAction() {
         $subjectID = (int) $this->params()->fromRoute('id', 0);
         if (!$subjectID) {
-            return $this->redirect()->toRoute('subject', array(
+            return $this->redirect()->toRoute('zfcadmin/subject', array(
                         'action' => 'add'
             ));
         }
@@ -63,7 +63,7 @@ class SubjectController extends AbstractActionController {
         try {
             $subject = $this->getSubjectTable()->getSubject($subjectID);
         } catch (\Exception $ex) {
-            return $this->redirect()->toRoute('subject', array(
+            return $this->redirect()->toRoute('zfcadmin/subject', array(
                         'action' => 'index'
             ));
         }
@@ -81,7 +81,7 @@ class SubjectController extends AbstractActionController {
                 $this->getSubjectTable()->saveSubject($subject);
 
                 // Redirect to list of subjects
-                return $this->redirect()->toRoute('subject');
+                return $this->redirect()->toRoute('zfcadmin/subject');
             }
         }
 
@@ -99,7 +99,7 @@ class SubjectController extends AbstractActionController {
     public function deleteAction() {
         $subjectID = (int) $this->params()->fromRoute('id', 0);
         if (!$subjectID) {
-            return $this->redirect()->toRoute('subject');
+            return $this->redirect()->toRoute('zfcadmin/subject');
         }
 
         $form = new DeleteForm();
@@ -112,7 +112,7 @@ class SubjectController extends AbstractActionController {
 
             if ($no == 'no') {
                 // Redirect to list of subjects
-                return $this->redirect()->toRoute('subject');
+                return $this->redirect()->toRoute('zfcadmin/subject');
             }
 
             if ($yes == 'yes') {
@@ -134,7 +134,7 @@ class SubjectController extends AbstractActionController {
                 if ($form->isValid()) {
                     $this->getSubjectTable()->deleteSubject($subjectID);
                     // Redirect to list of categories
-                    return $this->redirect()->toRoute('subject');
+                    return $this->redirect()->toRoute('zfcadmin/subject');
                 }
             }
         }
