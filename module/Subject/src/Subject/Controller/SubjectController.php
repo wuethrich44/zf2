@@ -27,7 +27,7 @@ class SubjectController extends AbstractActionController {
      */
     public function addAction() {
         $form = new SubjectForm();
-        $form->get('submit')->setValue('Add');
+        $form->get('submit')->setLabel('Add');
 
         $request = $this->getRequest();
         if ($request->isPost()) {
@@ -70,7 +70,7 @@ class SubjectController extends AbstractActionController {
 
         $form = new SubjectForm();
         $form->bind($subject);
-        $form->get('submit')->setAttribute('value', 'Edit');
+        $form->get('submit')->setLabel('Edit');
 
         $request = $this->getRequest();
         if ($request->isPost()) {

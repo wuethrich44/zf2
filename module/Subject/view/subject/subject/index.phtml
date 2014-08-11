@@ -2,31 +2,35 @@
 $title = $this->translate('Subjects');
 $this->headTitle($title);
 ?>
-<h1><?php echo $this->escapeHtml($title); ?></h1>
-<p>
-    <a href="<?php echo $this->url('zfcadmin/subject', array('action' => 'add')); ?>">
-        <?php echo $this->escapeHtml('Add new subject'); ?>
+<h1 class="page-header">
+    <?php echo $this->escapeHtml($title); ?>
+    <a href="<?php echo $this->url('zfcadmin/subject', array('action' => 'add')); ?>" class="btn btn-primary pull-right">
+        <?php echo $this->translate('Add new subject') ?>
     </a>
-</p>
+</h1>
 
 <table class="table">
-    <tr>
-        <th><?php echo $this->translate('Name'); ?></th>
-        <th><?php echo $this->translate('Abbreviation'); ?></th>
-        <th>&nbsp;</th>
-    </tr>
-    <?php foreach ($subjects as $subject) : ?>
+    <thead>
         <tr>
-            <td><?php echo $this->escapeHtml($subject->name); ?></td>
-            <td><?php echo $this->escapeHtml($subject->abbreviation); ?></td>
-            <td>
-                <a href="<?php echo $this->url('zfcadmin/subject', array('action' => 'edit', 'id' => $subject->subjectID)); ?>">
-                    <?php echo $this->translate('Edit'); ?>
-                </a>
-                <a href="<?php echo $this->url('zfcadmin/subject', array('action' => 'delete', 'id' => $subject->subjectID)); ?>">
-                    <?php echo $this->translate('Delete'); ?>
-                </a>
-            </td>
+            <th><?php echo $this->translate('Name'); ?></th>
+            <th><?php echo $this->translate('Abbreviation'); ?></th>
+            <th>&nbsp;</th>
         </tr>
-    <?php endforeach; ?>
+    </thead>
+    <tbody>
+        <?php foreach ($subjects as $subject) : ?>
+            <tr>
+                <td><?php echo $this->escapeHtml($subject->name); ?></td>
+                <td><?php echo $this->escapeHtml($subject->abbreviation); ?></td>
+                <td>
+                    <a href="<?php echo $this->url('zfcadmin/subject', array('action' => 'edit', 'id' => $subject->subjectID)); ?>">
+                        <?php echo $this->translate('Edit'); ?>
+                    </a> | 
+                    <a href="<?php echo $this->url('zfcadmin/subject', array('action' => 'delete', 'id' => $subject->subjectID)); ?>">
+                        <?php echo $this->translate('Delete'); ?>
+                    </a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
 </table>
