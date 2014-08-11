@@ -2,29 +2,33 @@
 $title = $this->translate('Categories');
 $this->headTitle($title);
 ?>
-<h1><?php echo $this->escapeHtml($title); ?></h1>
-<p>
-    <a href="<?php echo $this->url('zfcadmin/category', array('action' => 'add')); ?>">
-        <?php echo $this->escapeHtml('Add new category'); ?>
+<h1 class="page-header">
+    <?php echo $this->escapeHtml($title); ?>
+    <a href="<?php echo $this->url('zfcadmin/category', array('action' => 'add')); ?>" class="btn btn-primary pull-right">
+        <?php echo $this->translate('Add new category') ?>
     </a>
-</p>
+</h1>
 
 <table class="table">
-    <tr>
-        <th>Name</th>
-        <th>&nbsp;</th>
-    </tr>
-    <?php foreach ($categories as $category) : ?>
+    <thead>
         <tr>
-            <td><?php echo $this->escapeHtml($category->name); ?></td>
-            <td>
-                <a href="<?php echo $this->url('zfcadmin/category', array('action' => 'edit', 'id' => $category->categoryID)); ?>">
-                    <?php echo $this->translate('Edit'); ?>
-                </a>
-                <a href="<?php echo $this->url('zfcadmin/category', array('action' => 'delete', 'id' => $category->categoryID)); ?>">
-                    <?php echo $this->translate('Delete'); ?>
-                </a>
-            </td>
+            <th>Name</th>
+            <th>&nbsp;</th>
         </tr>
-    <?php endforeach; ?>
+    </thead>
+    <tbody>
+        <?php foreach ($categories as $category) : ?>
+            <tr>
+                <td><?php echo $this->escapeHtml($category->name); ?></td>
+                <td>
+                    <a href="<?php echo $this->url('zfcadmin/category', array('action' => 'edit', 'id' => $category->categoryID)); ?>">
+                        <?php echo $this->translate('Edit'); ?>
+                    </a> |
+                    <a href="<?php echo $this->url('zfcadmin/category', array('action' => 'delete', 'id' => $category->categoryID)); ?>">
+                        <?php echo $this->translate('Delete'); ?>
+                    </a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
 </table>

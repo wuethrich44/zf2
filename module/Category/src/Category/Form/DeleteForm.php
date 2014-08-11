@@ -19,21 +19,23 @@ class DeleteForm extends Form {
         $this->add(
                 array(
                     'name' => 'yes',
-                    'type' => 'Submit',
+                    'type' => 'Button',
                     'attributes' => array(
+                        'type' => 'submit',
                         'value' => 'yes',
-                        'class' => 'btn btn-default'
-                    )
+                    ),
+                    'options' => array('label' => 'Yes',),
         ));
 
         $this->add(
                 array(
                     'name' => 'no',
-                    'type' => 'Submit',
+                    'type' => 'Button',
                     'attributes' => array(
+                        'type' => 'submit',
                         'value' => 'no',
-                        'class' => 'btn btn-default'
-                    )
+                    ),
+                    'options' => array('label' => 'No',),
         ));
     }
 
