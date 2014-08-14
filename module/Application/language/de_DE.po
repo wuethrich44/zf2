@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZendSkeletonApplication\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-03 19:26+0100\n"
-"PO-Revision-Date: 2014-08-03 19:27+0100\n"
+"POT-Creation-Date: 2014-08-15 01:03+0100\n"
+"PO-Revision-Date: 2014-08-15 01:04+0100\n"
 "Last-Translator: Evan Coury <me@evancoury.com>\n"
 "Language-Team: ZF Contributors <zf-devteam@zend.com>\n"
 "Language: de_DE\n"
@@ -104,91 +104,69 @@ msgstr "Es ist keine Ausnahme verfügbar"
 msgid "An error occurred"
 msgstr "Ein Fehler ist aufgetreten"
 
-#: ../../Application/view/layout/layout.phtml:52
-#: ../../User/view/zfc-user/user/index.phtml:3 ../view/layout/layout.phtml:52
-msgid "Admin Area"
-msgstr "Adminbereich"
-
-#: ../../File/view/file/category/add.phtml:2
+#: ../../Category/view/category/category/add.phtml:2
+#: ../../Category/view/category/category/index.phtml:8
 msgid "Add new category"
 msgstr "Neue Kategorie hinzufügen"
 
-#: ../../File/view/file/category/delete.phtml:2
+#: ../../Category/view/category/category/delete.phtml:2
 msgid "Delete category"
 msgstr "Kategorie löschen"
 
-#: ../../File/view/file/category/delete.phtml:8
-#: ../../File/view/file/subject/delete.phtml:8
-msgid "Are you sure that you want to delete"
-msgstr "Sind Sie sicher das Sie löschen möchten"
+#: ../../Category/view/category/category/delete.phtml:8
+#: ../../Subject/view/subject/subject/delete.phtml:8
+#, php-format
+msgid "Are you sure that you want to delete %s?"
+msgstr "Sind Sie sicher das Sie %s  löschen möchten?"
 
-#: ../../File/view/file/category/edit.phtml:2
+#: ../../Category/view/category/category/edit.phtml:2
 msgid "Edit category"
 msgstr "Kategorie bearbeiten"
 
-#: ../../File/view/file/category/index.phtml:2
+#: ../../Category/view/category/category/index.phtml:2
 msgid "Categories"
 msgstr "Kategorien"
 
-#: ../../File/view/file/category/index.phtml:22
-#: ../../File/view/file/subject/index.phtml:24
-#: ../../User/view/zfc-user-admin/user-admin/list.phtml:42
+#: ../../Category/view/category/category/index.phtml:25
+#: ../../Subject/view/subject/subject/index.phtml:27
+#: ../../UserAdmin/view/zfc-user-admin/user-admin/list.phtml:42
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: ../../File/view/file/category/index.phtml:25
-#: ../../File/view/file/subject/index.phtml:27
-#: ../../User/view/zfc-user-admin/user-admin/list.phtml:47
+#: ../../Category/view/category/category/index.phtml:28
+#: ../../Subject/view/subject/subject/index.phtml:30
+#: ../../UserAdmin/view/zfc-user-admin/user-admin/list.phtml:47
 msgid "Delete"
 msgstr "Löschen"
 
-#: ../../File/view/file/subject/add.phtml:2
+#: ../../Subject/view/subject/subject/add.phtml:2
+#: ../../Subject/view/subject/subject/index.phtml:8
 msgid "Add new subject"
 msgstr "Neues Modul hinzufügen"
 
-#: ../../File/view/file/subject/delete.phtml:2
+#: ../../Subject/view/subject/subject/delete.phtml:2
 msgid "Delete subject"
 msgstr "Modul löschen"
 
-#: ../../File/view/file/subject/delete.phtml:36
-msgid "go to "
+#: ../../Subject/view/subject/subject/delete.phtml:28
+msgid "go to"
 msgstr "Gehe zu"
 
-#: ../../File/view/file/subject/edit.phtml:2
+#: ../../Subject/view/subject/subject/edit.phtml:2
 msgid "Edit subject"
 msgstr "Modul bearbeiten"
 
-#: ../../File/view/file/subject/index.phtml:2
+#: ../../Subject/view/subject/subject/index.phtml:2
 msgid "Subjects"
 msgstr "Module"
 
-#: ../../File/view/file/subject/index.phtml:14
+#: ../../Subject/view/subject/subject/index.phtml:15
 msgid "Name"
 msgstr "Name"
 
-#: ../../File/view/file/subject/index.phtml:15
+#: ../../Subject/view/subject/subject/index.phtml:16
 msgid "Abbreviation"
 msgstr "Abkürzung"
-
-#: ../../User/view/zfc-user-admin/user-admin/create.phtml:8
-msgid "Create user"
-msgstr "Benutzer erstellen"
-
-#: ../../User/view/zfc-user-admin/user-admin/edit.phtml:9
-msgid "Edit user"
-msgstr "Benutzer bearbeiten"
-
-#: ../../User/view/zfc-user-admin/user-admin/list.phtml:12
-msgid "Users"
-msgstr "Benutzer"
-
-#: ../../User/view/zfc-user-admin/user-admin/list.phtml:17
-msgid "Add New User"
-msgstr "Neuer Benutzer hinzufügen"
-
-#: ../../User/view/zfc-user-admin/user-admin/list.phtml:46
-msgid "Really delete user?"
-msgstr "Benutzer wirklich löschen?"
 
 #: ../../User/view/zfc-user/user/changeemail.phtml:3
 #, php-format
@@ -217,6 +195,10 @@ msgid "Unable to update your password. Please try again."
 msgstr ""
 "Dein Passwort konnte nicht geändert werden. Bitte versuche es nocheinmal."
 
+#: ../../User/view/zfc-user/user/index.phtml:3
+msgid "Admin Area"
+msgstr "Adminbereich"
+
 #: ../../User/view/zfc-user/user/index.phtml:7
 msgid "Hello"
 msgstr "Hallo"
@@ -233,17 +215,37 @@ msgstr "Passwort ändern"
 msgid "Sign In"
 msgstr "Login"
 
-#: ../../User/view/zfc-user/user/login.phtml:37
+#: ../../User/view/zfc-user/user/login.phtml:34
 msgid "Not registered?"
 msgstr "Noch nicht registriert?"
 
-#: ../../User/view/zfc-user/user/login.phtml:40
+#: ../../User/view/zfc-user/user/login.phtml:37
 msgid "Sign up!"
 msgstr "Melde dich an!"
 
-#: ../../User/view/zfc-user/user/register.phtml:3
+#: ../../User/view/zfc-user/user/register.phtml:2
 msgid "Register"
 msgstr "Registrierung"
+
+#: ../../UserAdmin/view/zfc-user-admin/user-admin/create.phtml:8
+msgid "Create user"
+msgstr "Benutzer erstellen"
+
+#: ../../UserAdmin/view/zfc-user-admin/user-admin/edit.phtml:9
+msgid "Edit user"
+msgstr "Benutzer bearbeiten"
+
+#: ../../UserAdmin/view/zfc-user-admin/user-admin/list.phtml:2
+msgid "Users"
+msgstr "Benutzer"
+
+#: ../../UserAdmin/view/zfc-user-admin/user-admin/list.phtml:18
+msgid "Add new user"
+msgstr "Neuer Benutzer hinzufügen"
+
+#: ../../UserAdmin/view/zfc-user-admin/user-admin/list.phtml:46
+msgid "Really delete user?"
+msgstr "Benutzer wirklich löschen?"
 
 #~ msgid "Sign Out"
 #~ msgstr "Ausloggen"

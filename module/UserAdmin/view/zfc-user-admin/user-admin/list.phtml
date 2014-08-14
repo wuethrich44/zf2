@@ -1,4 +1,7 @@
 <?php
+$title = $this->translate('Users');
+$this->headTitle($title);
+
 $getters = array();
 foreach ($this->userlistElements as $element) {
     $parts = explode('_', $element);
@@ -9,15 +12,12 @@ foreach ($this->userlistElements as $element) {
 }
 ?>
 
-<h1><?php echo $this->translate('Users') ?></h1>
-
-<div class="navbar">
-    <div class="pull-right">
-        <a href="<?php echo $this->url('zfcadmin/zfcuseradmin/create') ?>" class="btn btn-primary">
-            <?php echo $this->translate('Add New User') ?>
-        </a>
-    </div>
-</div>
+<h1 class="page-header">
+    <?php echo $this->escapeHtml($title); ?>
+    <a href="<?php echo $this->url('zfcadmin/zfcuseradmin/create'); ?>" class="btn btn-primary pull-right">
+        <?php echo $this->translate('Add new user') ?>
+    </a>
+</h1>
 
 <table class="table">
     <thead>
@@ -32,17 +32,17 @@ foreach ($this->userlistElements as $element) {
         <?php foreach ($this->users as $user): ?>
             <tr>
                 <?php foreach ($this->userlistElements as $element): ?>
-                    <td class="cell cell-<?php echo $this->escapeHtml($element) ?>">
+                    <td>
                         <?php $parts = explode('_', $element); ?>
                         <?php echo call_user_func(array($user, $getters[$element])); ?>
                     </td>
                 <?php endforeach; ?>
-                <td class="cell cell-ctrls">
+                <td>
                     <a href="<?php echo $this->url('zfcadmin/zfcuseradmin/edit', array('userId' => $user->getId())); ?>">
                         <?php echo $this->translate('Edit') ?>
                     </a>
                     |
-                    <a class="delete" href="<?php echo $this->url('zfcadmin/zfcuseradmin/remove', array('userId' => $user->getId())); ?>"
+                    <a href="<?php echo $this->url('zfcadmin/zfcuseradmin/remove', array('userId' => $user->getId())); ?>"
                        onclick="return confirm('<?php echo $this->translate('Really delete user?') ?>')">
                         <?php echo $this->translate('Delete') ?>
                     </a>
@@ -52,8 +52,14 @@ foreach ($this->userlistElements as $element) {
     </tbody>
     <tfoot>
         <tr>
-            <td colspan="<?php echo count($this->userlistElements) + 1; ?>" style="text-align: center;">
-                <?php echo $this->paginationControl($this->users, 'Sliding', 'zfc-user-admin/user-admin/pagination_userlist.phtml'); ?>
+            <td style="text-align: center;" colspan="<?php echo count($this->userlistElements) + 1; ?>">
+                <?php 
+                echo $this->paginationControl(
+                        $this->users, 
+                        'Sliding', 
+                        'zfc-user-admin/user-admin/pagination_userlist.phtml'
+                ); 
+                ?>
             </td>
         </tr>
     </tfoot>
