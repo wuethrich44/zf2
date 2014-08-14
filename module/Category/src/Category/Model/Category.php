@@ -1,6 +1,6 @@
 <?php
 
-namespace Category\Model;
+namespace File\Model;
 
 use Zend\InputFilter\InputFilter;
 use Zend\InputFilter\InputFilterAwareInterface;
@@ -112,6 +112,10 @@ class Category implements InputFilterAwareInterface {
                                 'options' => array(
                                     'table' => 'categories',
                                     'field' => 'name',
+                                    'exclude' => array(
+                                        'field' => 'categoryID',
+                                        'value' => $this->categoryID,
+                                    ),
                                     'adapter' => $this->dbAdapter,
                                 )
                             )
