@@ -112,6 +112,10 @@ class Category implements InputFilterAwareInterface {
                                 'options' => array(
                                     'table' => 'categories',
                                     'field' => 'name',
+                                    'exclude' => array(
+                                        'field' => 'categoryID',
+                                        'value' => $this->categoryID,
+                                    ),
                                     'adapter' => $this->dbAdapter,
                                 )
                             )
