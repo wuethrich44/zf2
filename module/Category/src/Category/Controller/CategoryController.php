@@ -21,12 +21,9 @@ class CategoryController extends AbstractActionController {
      * @see \Zend\Mvc\Controller\AbstractActionController::indexAction()
      */
     public function indexAction() {
-        $paginator = $this->getCategoryTable()->fetchAll(true);
-        $paginator->setCurrentPageNumber((int) $this->params()->fromQuery('page', 1));
-        $paginator->setItemCountPerPage(10);
-
-        return new ViewModel(array(
-            'paginator' => $paginator
+        return new ViewModel(
+                array(
+            'categories' => $this->getCategoryTable()->fetchAll()
         ));
     }
 

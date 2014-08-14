@@ -2,11 +2,8 @@
 
 namespace Category\Model;
 
-use Zend\Db\Sql\Expression;
-use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
-use Zend\Paginator\Adapter\DbSelect;
-use Zend\Paginator\Paginator;
+use Zend\Db\Sql\Expression;
 
 class CategoryTable {
 
@@ -26,16 +23,8 @@ class CategoryTable {
      *
      * @return \Zend\Db\ResultSet\ResultSet with Categories
      */
-    public function fetchAll($paginated = false) {
+    public function fetchAll() {
         $select = $this->tableGateway->getSql()->select()->order('name');
-
-        if ($paginated) {
-            $resultSetPrototype = new ResultSet();
-            $resultSetPrototype->setArrayObjectPrototype(new Category());
-            $paginatorAdapter = new DbSelect($select, $this->tableGateway->getAdapter(), $resultSetPrototype);
-            $paginator = new Paginator($paginatorAdapter);
-            return $paginator;
-        }
 
         return $this->tableGateway->selectWith($select);
     }
@@ -59,8 +48,8 @@ class CategoryTable {
         }
         return $row;
     }
-
-    /**
+    
+        /**
      * Return a the cateogryID by category name
      * 
      * @param String $name 
@@ -72,11 +61,11 @@ class CategoryTable {
                     'name' => $name
         ));
         $row = $rowset->current();
-
-        if (!$row) {
+        
+        if(!$row) {
             return 0;
         }
-
+        
         return $row->categoryID;
     }
 
@@ -88,7 +77,7 @@ class CategoryTable {
      */
     public function getUsedCategories($subjectID) {
         $subjectID = (int) $subjectID;
-
+        
         $select = $this->tableGateway->getSql()
                 ->select()
                 ->columns(array('*', 'fileCount' => new Expression('COUNT(files.fileID)')))

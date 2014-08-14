@@ -2,10 +2,7 @@
 
 namespace Subject\Model;
 
-use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
-use Zend\Paginator\Adapter\DbSelect;
-use Zend\Paginator\Paginator;
 
 class SubjectTable {
 
@@ -25,17 +22,9 @@ class SubjectTable {
      *
      * @return \Zend\Db\ResultSet\ResultSet
      */
-    public function fetchAll($paginated = false) {
+    public function fetchAll() {
         $select = $this->tableGateway->getSql()->select()->order('name');
 
-        if ($paginated) {
-            $resultSetPrototype = new ResultSet();
-            $resultSetPrototype->setArrayObjectPrototype(new Subject());
-            $paginatorAdapter = new DbSelect($select, $this->tableGateway->getAdapter(), $resultSetPrototype);
-            $paginator = new Paginator($paginatorAdapter);
-            return $paginator;
-        }
-        
         return $this->tableGateway->selectWith($select);
     }
 
@@ -58,7 +47,7 @@ class SubjectTable {
         }
         return $row;
     }
-
+    
     /**
      * Return a the subjectID by abbreviation
      * 
@@ -71,11 +60,11 @@ class SubjectTable {
                     'abbreviation' => $abbreviation
         ));
         $row = $rowset->current();
-
-        if (!$row) {
+        
+        if(!$row) {
             return 0;
         }
-
+        
         return $row->subjectID;
     }
 

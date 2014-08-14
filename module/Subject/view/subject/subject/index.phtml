@@ -18,7 +18,7 @@ $this->headTitle($title);
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($this->paginator as $subject) : ?>
+        <?php foreach ($subjects as $subject) : ?>
             <tr>
                 <td><?php echo $this->escapeHtml($subject->name); ?></td>
                 <td><?php echo $this->escapeHtml($subject->abbreviation); ?></td>
@@ -33,18 +33,4 @@ $this->headTitle($title);
             </tr>
         <?php endforeach; ?>
     </tbody>
-    <tfoot>
-        <tr>
-            <td style="text-align: center;" colspan="3">
-                <?php
-                echo $this->paginationControl(
-                        $this->paginator, 
-                        'sliding', 
-                        array('partial/paginator.phtml', 'Subject'), 
-                        array('route' => 'zfcadmin/subject')
-                );
-                ?>
-            </td>
-        </tr>
-    </tfoot>
 </table>

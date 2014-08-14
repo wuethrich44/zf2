@@ -14,12 +14,9 @@ class SubjectController extends AbstractActionController {
     protected $subjectTable;
 
     public function indexAction() {
-        $paginator = $this->getSubjectTable()->fetchAll(true);
-        $paginator->setCurrentPageNumber((int) $this->params()->fromQuery('page', 1));
-        $paginator->setItemCountPerPage(10);
-
-        return new ViewModel(array(
-            'paginator' => $paginator
+        return new ViewModel(
+                array(
+            'subjects' => $this->getSubjectTable()->fetchAll()
         ));
     }
 
