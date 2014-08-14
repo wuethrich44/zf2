@@ -1,6 +1,6 @@
 <?php
 
-namespace File\Model;
+namespace Subject\Model;
 
 use Zend\InputFilter\InputFilter;
 use Zend\InputFilter\InputFilterAwareInterface;
@@ -111,11 +111,7 @@ class Subject implements InputFilterAwareInterface {
                                 'options' => array(
                                     'table' => 'subjects',
                                     'field' => 'name',
-                                    'exclude' => array(
-                                        'field' => 'subjectID',
-                                        'value' => $this->subjectID,
-                                    ),
-                                    'adapter' => $this->dbAdapter,
+                                    'adapter' => $this->dbAdapter
                                 )
                             )
                         )
@@ -138,7 +134,7 @@ class Subject implements InputFilterAwareInterface {
                             array(
                                 'name' => 'PregReplace',
                                 'options' => array(
-                                    'pattern' => '/[^a-zA-Z0-9_+]/',
+                                    'pattern'     => '/[^a-zA-Z0-9_+]/',
                                     'replacement' => '-',
                                 ),
                             ),
@@ -156,11 +152,7 @@ class Subject implements InputFilterAwareInterface {
                                 'name' => '\Zend\Validator\Db\NoRecordExists',
                                 'options' => array(
                                     'table' => 'subjects',
-                                    'field' => 'abbreviation',
-                                    'exclude' => array(
-                                        'field' => 'subjectID',
-                                        'value' => $this->subjectID,
-                                    ),
+                                    'field' => 'name',
                                     'adapter' => $this->dbAdapter
                                 )
                             ),
@@ -174,3 +166,5 @@ class Subject implements InputFilterAwareInterface {
     }
 
 }
+
+?>
