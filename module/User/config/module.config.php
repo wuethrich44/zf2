@@ -23,4 +23,7 @@ return array(
             ),
         ),
     ),
+    'user_registration' => array(
+        'only_hslu_email' => false,
+    ),
 );
