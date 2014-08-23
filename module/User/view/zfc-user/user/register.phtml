@@ -1,39 +1,19 @@
-
 <h1><?php echo $this->translate('Register'); ?></h1>
-<?php
+
+    <?php
 if (!$this->enableRegistration) {
     print "Registration is disabled";
     return;
 }
+
 $form = $this->registerForm;
 $form->prepare();
 $form->setAttribute('action', $this->url('zfcuser/register'));
 $form->setAttribute('method', 'post');
 ?>
 
-<?php echo $this->form()->openTag($form) ?>
-<?php foreach ($form as $element): ?>
-    <div class="form-group">
-        <?php if (!$element instanceof Zend\Form\Element\Button): ?>
-            <?php echo $this->formLabel($element) ?>
-        <?php endif; ?>
-        <?php if ($element instanceof Zend\Form\Element\Button): ?>
-            <?php echo $this->formButton($element) ?>
-        <?php elseif ($element instanceof Zend\Form\Element\Captcha): ?>
-            <?php echo $this->formCaptcha($element) . $this->formElementErrors($element) ?>
-        <?php else: ?>
-            <?php if ($element->getName() == "email"): ?>
-                <div class="input-group">
-                    <?php echo $this->formInput($element) ?>
-                    <span class="input-group-addon">@stud.hslu.ch</span>                           
-                </div>
-                <?php echo $this->formElementErrors($element) ?>
-            <?php else: ?>
-                <?php echo $this->formInput($element) . $this->formElementErrors($element) ?>
-            <?php endif; ?>     
-        <?php endif; ?>
-    </div>
-<?php endforeach; ?>
+<?php echo $this->form($form, null); ?>
+
 <?php if ($this->redirect): ?>
     <input type="hidden" name="redirect" value="<?php echo $this->escapeHtml($this->redirect) ?>" />
 <?php endif; ?>

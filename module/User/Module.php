@@ -58,12 +58,18 @@ class Module {
             }
         });
 
-        // Modify LoginForm
-        $events->attach('ZfcUser\Form\Login', 'init', function($e) {
+        // Modify ChangePasswordForm
+        $events->attach('ZfcUser\Form\ChangePassword', 'init', function($e) {
             $form = $e->getTarget();
-            $form->get('identity')->setAttribute('class', 'form-control');
-            $form->get('credential')->setAttribute('class', 'form-control');
             $form->get('submit')->setAttribute('class', 'btn btn-default');
+        });
+        
+        // Modify ChangeEmailForm
+        $events->attach('ZfcUser\Form\ChangeEmail', 'init', function($e) {
+            $form = $e->getTarget();
+            $button = new \Zend\Form\Element\Button('Submit', array('label' => 'Submit'));
+            $button->setAttribute('type', 'submit');
+            $form->add($button);
         });
     }
 

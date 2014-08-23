@@ -7,28 +7,11 @@ $form->setAttribute('action', $this->url('zfcuser/login'));
 $form->setAttribute('method', 'post');
 ?>
 
-<?php echo $this->form()->openTag($form) ?>
-<?php echo $this->formElementErrors($form->get('identity')) ?>
-
-<div class="form-group">
-    <?php echo $this->formLabel($form->get('identity')) ?>
-    <?php echo $this->formInput($form->get('identity')) ?>
-</div>
-
-<div class="form-group">
-    <?php echo $this->formLabel($form->get('credential')) ?>
-    <?php echo $this->formInput($form->get('credential')) ?>
-</div>
+<?php echo $this->form($form, null); ?>
 
 <?php if ($this->redirect): ?>
-    <input type="hidden" name="redirect"
-           value="<?php echo $this->escapeHtml($this->redirect) ?>" />
-       <?php endif ?>
-
-<?php echo $this->formButton($form->get('submit')) ?>
-
-
-<?php echo $this->form()->closeTag() ?>
+    <input type="hidden" name="redirect" value="<?php echo $this->escapeHtml($this->redirect) ?>" />
+<?php endif ?>
 
 <?php if ($this->enableRegistration) : ?>
     <?php echo $this->translate('Not registered?'); ?>
