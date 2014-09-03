@@ -15,6 +15,8 @@ return array(
         'ZfcUser',
         'ZfcUserAdmin',
         'BjyAuthorize',
+        'HtUserRegistration',
+        'MtMail',
         // Override
         'User',
         'Admin',

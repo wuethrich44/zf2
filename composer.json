@@ -8,7 +8,8 @@
         "zf-commons/zfc-admin": "0.2.*",
         "danielss89/zfc-user-admin": "dev-master",
         "neilime/zf2-twb-bundle": "2.3.*",
-        "bjyoungblood/bjy-authorize": "1.4.*"
+        "bjyoungblood/bjy-authorize": "1.4.*",
+        "hrevert/ht-user-registration": "dev-master"
     },
     "require-dev": {
         "zendframework/zftool": "dev-master",
