@@ -1,12 +1,12 @@
 <?php
 
-namespace File\Controller;
+namespace Category\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Zend\Validator\Db\NoRecordExists;
-use File\Form\CategoryForm;
-use File\Form\DeleteForm;
+use Category\Form\CategoryForm;
+use Category\Form\DeleteForm;
 
 class CategoryController extends AbstractActionController {
 
@@ -183,7 +183,7 @@ class CategoryController extends AbstractActionController {
     public function getCategoryTable() {
         if (!$this->categoryTable) {
             $sm = $this->getServiceLocator();
-            $this->categoryTable = $sm->get('File\Model\CategoryTable');
+            $this->categoryTable = $sm->get('Category\Model\CategoryTable');
         }
         return $this->categoryTable;
     }

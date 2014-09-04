@@ -5,8 +5,6 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'File\Controller\File' => 'File\Controller\FileController',
-            'File\Controller\Category' => 'File\Controller\CategoryController',
-            'File\Controller\Subject' => 'File\Controller\SubjectController'
         )
     ),
     'router' => array(
@@ -34,7 +32,7 @@ return array(
                         'id' => '[0-9]+'
                     ),
                     'defaults' => array(
-                        'controller' => 'File\Controller\Category',
+                        'controller' => 'Category\Controller\Category',
                         'action' => 'index'
                     )
                 )

@@ -12,6 +12,7 @@ return array(
         'Download',
         'File',
         'Subject',
+        'Category',
         'ZfcBase',
         'ZfcUser',
         'User',

@@ -148,7 +148,7 @@ class DownloadController extends AbstractActionController {
     public function getCategoryTable() {
         if (!$this->categoryTable) {
             $sm = $this->getServiceLocator();
-            $this->categoryTable = $sm->get('File\Model\CategoryTable');
+            $this->categoryTable = $sm->get('Category\Model\CategoryTable');
         }
         return $this->categoryTable;
     }
