@@ -130,12 +130,12 @@ class DownloadController extends AbstractActionController {
     /**
      * Return the SubjectTableGateway
      * 
-     * @return File\Model\SubjectTable
+     * @return Subject\Model\SubjectTable
      */
     public function getSubjectTable() {
         if (!$this->subjectTable) {
             $sm = $this->getServiceLocator();
-            $this->subjectTable = $sm->get('File\Model\SubjectTable');
+            $this->subjectTable = $sm->get('Subject\Model\SubjectTable');
         }
         return $this->subjectTable;
     }

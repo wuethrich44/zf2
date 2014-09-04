@@ -11,6 +11,7 @@ return array(
         'Application',
         'Download',
         'File',
+        'Subject',
         'ZfcBase',
         'ZfcUser',
         'User',

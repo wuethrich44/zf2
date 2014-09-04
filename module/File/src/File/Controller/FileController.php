@@ -164,7 +164,7 @@ class FileController extends AbstractActionController {
     public function getSubjectTable() {
         if (!$this->subjectTable) {
             $sm = $this->getServiceLocator();
-            $this->subjectTable = $sm->get('File\Model\SubjectTable');
+            $this->subjectTable = $sm->get('Subject\Model\SubjectTable');
         }
         return $this->subjectTable;
     }
