@@ -169,7 +169,7 @@ class SubjectController extends AbstractActionController {
     public function getSubject() {
         if (!$this->subject) {
             $sm = $this->getServiceLocator();
-            $this->subject = $sm->get('Subject');
+            $this->subject = $sm->get('Subject\Model\Subject');
         }
         return $this->subject;
     }

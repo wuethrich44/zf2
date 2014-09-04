@@ -14,6 +14,15 @@ class Subject implements InputFilterAwareInterface {
     public $abbreviation;
     protected $inputFilter;
     protected $dbAdapter;
+    
+    /**
+     * Constructor
+     * 
+     * @param \Zend\Db\Adapter\Adapter $dbAdapter
+     */
+    public function __construct(Adapter $dbAdapter) {
+        $this->dbAdapter = $dbAdapter;
+    }
 
     /**
      * Used by TableGateway to fill the object
@@ -33,24 +42,6 @@ class Subject implements InputFilterAwareInterface {
      */
     public function getArrayCopy() {
         return get_object_vars($this);
-    }
-
-    /**
-     * Set DbAdapter for NoRecordExists
-     *
-     * @param Adapter $dbAdapter            
-     */
-    public function setDbAdapter($dbAdapter) {
-        $this->dbAdapter = $dbAdapter;
-    }
-
-    /**
-     * Get DbAdapter
-     *
-     * @return Adapter
-     */
-    public function getDbAdapter() {
-        return $this->dbAdapter;
     }
 
     /**

@@ -2,11 +2,6 @@
 
 namespace Subject;
 
-use Subject\Model\Subject;
-use Subject\Model\SubjectTable;
-use Zend\Db\ResultSet\ResultSet;
-use Zend\Db\TableGateway\TableGateway;
-
 class Module {
 
     public function getConfig() {
@@ -27,24 +22,10 @@ class Module {
     public function getServiceConfig() {
         return array(
             'factories' => array(
-                'Subject\Model\SubjectTable' => function ($sm) {
-            $tableGateway = $sm->get('SubjectTableGateway');
-            $table = new SubjectTable($tableGateway);
-            return $table;
-        },
-                'SubjectTableGateway' => function ($sm) {
-            $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
-            $resultSetPrototype = new ResultSet();
-            $resultSetPrototype->setArrayObjectPrototype(
-                    $sm->get('Subject'));
-            return new TableGateway('subjects', $dbAdapter, null, $resultSetPrototype);
-        },
-                'Subject' => function ($sm) {
-            $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
-            $subject = new Subject();
-            $subject->setDbAdapter($dbAdapter);
-            return $subject;
-        },
+                'Subject\Model\Subject' => 'Subject\Model\Factory\SubjectFactory',
+                'Subject\Model\SubjectTable' => 'Subject\Model\Factory\SubjectTableFactory',
+                'Subject\Model\ResultSet' => 'Subject\Model\Factory\ResultSetFactory',
+                'Subject\Model\TableGateway' => 'Subject\Model\Factory\TableGatewayFactory',
             )
         );
     }
