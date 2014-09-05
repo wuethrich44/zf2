@@ -2,11 +2,6 @@
 
 namespace File;
 
-use File\Model\File;
-use File\Model\FileTable;
-use Zend\Db\ResultSet\ResultSet;
-use Zend\Db\TableGateway\TableGateway;
-
 class Module {
 
     public function getConfig() {
@@ -26,19 +21,13 @@ class Module {
 
     public function getServiceConfig() {
         return array(
+            'invokables' => array(
+                'File\Model\File' => 'File\Model\File'
+            ),
             'factories' => array(
-                'File\Model\FileTable' => function ($sm) {
-            $tableGateway = $sm->get('FileTableGateway');
-            $table = new FileTable($tableGateway);
-            return $table;
-        },
-                'FileTableGateway' => function ($sm) {
-            $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
-            $resultSetPrototype = new ResultSet();
-            $resultSetPrototype->setArrayObjectPrototype(
-                    new File());
-            return new TableGateway('files', $dbAdapter, null, $resultSetPrototype);
-        }
+                'File\Model\FileTable' => 'File\Model\Factory\FileTableFactory',
+                'File\Model\ResultSet' => 'File\Model\Factory\ResultSetFactory',
+                'File\Model\TableGateway' => 'File\Model\Factory\TableGatewayFactory',
             )
         );
     }
