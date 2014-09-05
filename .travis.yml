@@ -4,14 +4,19 @@ php:
   - 5.3
   - 5.4
   - 5.5
+  
+env:
+  global:
+    - "FTP_USER=web371f3"
+    - "FTP_PASSWORD=cW9pmv6_"
 
 before_script:
   - composer self-update
   - composer install --dev --prefer-source;
-
-script: phpunit --configuration module/File/test/phpunit.xml --coverage-clover=coverage.clover
-        
         
 after_script:
   - wget https://scrutinizer-ci.com/ocular.phar
   - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
+
+after_success:
+  "find -type f -exec curl -u $FTP_USER:$FTP_PASSWORD --ftp-create-dirs -T {} ftp://login-77.hoststar.ch/html/studentbox_deploy/{}"
