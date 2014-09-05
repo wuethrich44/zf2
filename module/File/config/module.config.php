@@ -4,7 +4,7 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'File\Controller\File' => 'File\Controller\FileController',
-        )
+        ),
     ),
     'router' => array(
         'routes' => array(
@@ -14,19 +14,19 @@ return array(
                     'route' => '/file[/][:action][/:id]',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                        'id' => '[0-9]+'
+                        'id' => '[0-9]+',
                     ),
                     'defaults' => array(
                         'controller' => 'File\Controller\File',
-                        'action' => 'index'
-                    )
-                )
+                        'action' => 'index',
+                    ),
+                ),
             ),
-        )
+        ),
     ),
     'view_manager' => array(
         'template_path_stack' => array(
-            'file' => __DIR__ . '/../view'
-        )
-    )
+            'file' => __DIR__ . '/../view',
+        ),
+    ),
 );
