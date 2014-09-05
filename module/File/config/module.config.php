@@ -1,7 +1,6 @@
 <?php
 
 return array(
-    // TODO all config like this structure
     'controllers' => array(
         'invokables' => array(
             'File\Controller\File' => 'File\Controller\FileController',
@@ -23,39 +22,11 @@ return array(
                     )
                 )
             ),
-            'category' => array(
-                'type' => 'segment',
-                'options' => array(
-                    'route' => '/category[/][:action][/:id]',
-                    'constraints' => array(
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                        'id' => '[0-9]+'
-                    ),
-                    'defaults' => array(
-                        'controller' => 'Category\Controller\Category',
-                        'action' => 'index'
-                    )
-                )
-            ),
-            'subject' => array(
-                'type' => 'segment',
-                'options' => array(
-                    'route' => '/subject[/][:action][/:id]',
-                    'constraints' => array(
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                        'id' => '[0-9]+'
-                    ),
-                    'defaults' => array(
-                        'controller' => 'File\Controller\Subject',
-                        'action' => 'index'
-                    )
-                )
-            )
         )
     ),
     'view_manager' => array(
         'template_path_stack' => array(
-            'album' => __DIR__ . '/../view'
+            'file' => __DIR__ . '/../view'
         )
     )
 );
