@@ -5,6 +5,7 @@ namespace Category\Model;
 use Zend\InputFilter\InputFilter;
 use Zend\InputFilter\InputFilterAwareInterface;
 use Zend\InputFilter\InputFilterInterface;
+use Zend\Db\Adapter\Adapter;
 
 class Category implements InputFilterAwareInterface {
 
@@ -13,6 +14,15 @@ class Category implements InputFilterAwareInterface {
     public $fileCount;
     protected $inputFilter;
     protected $dbAdapter;
+
+    /**
+     * Constructor
+     * 
+     * @param \Zend\Db\Adapter\Adapter $dbAdapter
+     */
+    public function __construct(Adapter $dbAdapter) {
+        $this->dbAdapter = $dbAdapter;
+    }
 
     /**
      * Used by TableGateway to fill the instance
@@ -32,24 +42,6 @@ class Category implements InputFilterAwareInterface {
      */
     public function getArrayCopy() {
         return get_object_vars($this);
-    }
-
-    /**
-     * Set DbAdapter for NoRecordExists
-     *
-     * @param Adapter $dbAdapter            
-     */
-    public function setDbAdapter($dbAdapter) {
-        $this->dbAdapter = $dbAdapter;
-    }
-
-    /**
-     * Get DbAdapter
-     *
-     * @return Adapter
-     */
-    public function getDbAdapter() {
-        return $this->dbAdapter;
     }
 
     /**

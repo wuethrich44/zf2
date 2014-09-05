@@ -175,7 +175,7 @@ class CategoryController extends AbstractActionController {
     public function getCategory() {
         if (!$this->category) {
             $sm = $this->getServiceLocator();
-            $this->category = $sm->get('Category');
+            $this->category = $sm->get('Category\Model\Category');
         }
         return $this->category;
     }
