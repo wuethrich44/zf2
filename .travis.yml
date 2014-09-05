@@ -13,12 +13,8 @@ env:
 before_script:
   - composer self-update
   - composer install --prefer-source;
-  
-script: phpunit ---version --coverage-clover=coverage.clover
         
 after_script:
   - wget https://scrutinizer-ci.com/ocular.phar
   - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
-
-after_success:
-  "find -type f -exec curl -u $FTP_USER:$FTP_PASSWORD --ftp-create-dirs -T {} ftp://login-77.hoststar.ch/html/studentbox_deploy/{}"
+  - "find -type f -exec curl -u $FTP_USER:$FTP_PASSWORD --ftp-create-dirs -T {} ftp://login-77.hoststar.ch/html/studentbox_deploy/{}"
