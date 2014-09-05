@@ -17,4 +17,4 @@ before_script:
 after_script:
   - wget https://scrutinizer-ci.com/ocular.phar
   - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
-  - "find -type f -exec curl -u $FTP_USER:$FTP_PASSWORD --ftp-create-dirs -T {} ftp://login-77.hoststar.ch/html/studentbox_deploy/{}\\;"
+  - "find -type f -exec curl -u $FTP_USER:$FTP_PASSWORD --ftp-create-dirs -T {} ftp://login-77.hoststar.ch/html/studentbox_deploy/{} \\;"
