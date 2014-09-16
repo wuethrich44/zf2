@@ -21,6 +21,11 @@ class ModuleOptions extends AbstractOptions {
      */
     protected $allowedFileExtensions = array('zip', 'pdf');
 
+    /**
+     * @var bool 
+     */
+    protected $randomizeFileName = true;
+
     public function setUploadFolderPath($uploadFolderPath) {
         $this->uploadFolderPath = $uploadFolderPath;
 
@@ -53,6 +58,16 @@ class ModuleOptions extends AbstractOptions {
 
     public function getAllowedFileExtensions() {
         return $this->allowedFileExtensions;
+    }
+
+    public function setRandomizeFileName($randomizeFileName) {
+        $this->randomizeFileName = $randomizeFileName;
+
+        return $this;
+    }
+
+    public function getRandomizeFileName() {
+        return $this->randomizeFileName;
     }
 
 }

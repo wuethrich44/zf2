@@ -42,8 +42,7 @@ class FileController extends AbstractActionController {
             $file = new File();
 
             $data = array_merge_recursive(
-                    $this->getRequest()->getPost()->toArray(), 
-                    $this->getRequest()->getFiles()->toArray()
+                    $this->getRequest()->getPost()->toArray(), $this->getRequest()->getFiles()->toArray()
             );
 
             $form->setData($data);
@@ -58,14 +57,19 @@ class FileController extends AbstractActionController {
             $extension = new Extension($this->getOptions()->getAllowedFileExtensions());
 
             // Filter für Zufallsnamen
-            $filter = new Rename(array(
-                'target' => $uploadPath . '/file',
-                'randomize' => true,
-            ));
+            if ($this->options->getRandomizeFileName()) {
+                $rename = new Rename(array(
+                    'target' => $uploadPath . '/file',
+                    'randomize' => true,
+                ));
+            } else {
+                $rename = null;
+            }
 
+            //TODO Add to factory
             $adapter = new Http();
             $adapter->setValidators(array($size, $extension));
-            $adapter->setFilters(array($filter));
+            $adapter->setFilters(array($rename));
 
             if (!$adapter->isValid()) {
                 $dataError = $adapter->getMessages();

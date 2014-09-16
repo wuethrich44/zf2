@@ -28,6 +28,13 @@ $options = array(
      * Default: array('zip', 'pdf')
      */
     'allowed_file_extensions' => array('zip', 'pdf'),
+    
+    /**
+     * Randomized Filenames (should be true for security reasons)
+     *
+     * Default: true
+     */
+    'randomize_file_name' => true,
 );
 
 /**
