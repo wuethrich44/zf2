@@ -42,11 +42,9 @@ class FileController extends AbstractActionController {
             $file = new File();
 
             $data = array_merge_recursive(
-                    $this->getRequest()
-                            ->getPost()
-                            ->toArray(), $this->getRequest()
-                            ->getFiles()
-                            ->toArray());
+                    $this->getRequest()->getPost()->toArray(), 
+                    $this->getRequest()->getFiles()->toArray()
+            );
 
             $form->setData($data);
 
@@ -56,25 +54,18 @@ class FileController extends AbstractActionController {
             $size = new Size(array(
                 'max' => $this->getOptions()->getMaxFileSizeInByte()
             ));
-            $extension = new Extension(array('zip', 'pdf'));
+
+            $extension = new Extension($this->getOptions()->getAllowedFileExtensions());
 
             // Filter für Zufallsnamen
-            $filter = new Rename(
-                    array(
+            $filter = new Rename(array(
                 'target' => $uploadPath . '/file',
-                'randomize' => true
+                'randomize' => true,
             ));
 
             $adapter = new Http();
-            $adapter->setValidators(
-                    array(
-                        $size,
-                        $extension,
-            ));
-            $adapter->setFilters(
-                    array(
-                        $filter,
-            ));
+            $adapter->setValidators(array($size, $extension));
+            $adapter->setFilters(array($filter));
 
             if (!$adapter->isValid()) {
                 $dataError = $adapter->getMessages();

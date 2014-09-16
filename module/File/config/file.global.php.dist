@@ -21,6 +21,13 @@ $options = array(
      * Default: 10000000 (10 MByte)
      */
     'max_file_size_in_byte' => 10000000,
+    
+    /**
+     * Allowed file extensions
+     *
+     * Default: array('zip', 'pdf')
+     */
+    'allowed_file_extensions' => array('zip', 'pdf'),
 );
 
 /**

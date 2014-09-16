@@ -10,11 +10,16 @@ class ModuleOptions extends AbstractOptions {
      * @var string
      */
     protected $uploadFolderPath = 'data/uploads';
-    
+
     /**
      * @var int 
      */
     protected $maxFileSizeInByte = 10000000; // 10 MByte
+
+    /**
+     * @var array 
+     */
+    protected $allowedFileExtensions = array('zip', 'pdf');
 
     public function setUploadFolderPath($uploadFolderPath) {
         $this->uploadFolderPath = $uploadFolderPath;
@@ -38,6 +43,16 @@ class ModuleOptions extends AbstractOptions {
 
     public function getMaxFileSizeInByte() {
         return $this->maxFileSizeInByte;
+    }
+
+    public function setAllowedFileExtensions($allowedFileExtensions) {
+        $this->allowedFileExtensions = $allowedFileExtensions;
+
+        return $this;
+    }
+
+    public function getAllowedFileExtensions() {
+        return $this->allowedFileExtensions;
     }
 
 }
