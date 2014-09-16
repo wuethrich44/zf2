@@ -15,8 +15,7 @@ class FileController extends AbstractActionController {
     protected $subjectTable;
     protected $categoryTable;
     protected $fileTable;
-    protected $uploadPath;
-    protected $maxFileSize;
+    protected $options;
 
     public function indexAction() {
         throw new \BadMethodCallException('Method not implemented');
@@ -51,12 +50,11 @@ class FileController extends AbstractActionController {
 
             $form->setData($data);
 
-            $uploadPath = $this->getFileUploadLocation();
+            $uploadPath = $this->getOptions()->getUploadFolderPath();
 
             // Validatoren
-            $size = new Size(
-                    array(
-                'max' => $this->getMaxFileSize()
+            $size = new Size(array(
+                'max' => $this->getOptions()->getMaxFileSizeInByte()
             ));
             $extension = new Extension(array('zip', 'pdf'));
 
@@ -142,10 +140,10 @@ class FileController extends AbstractActionController {
             try {
 
                 $file = $this->getFileTable()->getFile($fileID);
-                $path = $this->getFileUploadLocation() . '/' . $file->url;
+                $filePath = $this->getOptions()->getUploadFolderPath() . '/' . $file->url;
 
-                if (file_exists($path)) {
-                    if (!unlink($path)) {
+                if (file_exists($filePath)) {
+                    if (!unlink($filePath)) {
                         throw new \Exception('Could not delete file');
                     }
                 }
@@ -185,36 +183,12 @@ class FileController extends AbstractActionController {
         return $this->fileTable;
     }
 
-    /**
-     * Return the upload location
-     *
-     * @return string upload location
-     */
-    protected function getFileUploadLocation() {
-        if (!$this->uploadPath) {
-            // Fetch Configuration from Module Config
-            $config = $this->getServiceLocator()->get('Config');
-            $uploadPath = $config['module_config']['upload_location'];
-            if (!is_dir($uploadPath)) {
-                mkdir($uploadPath);
-            }
-            $this->uploadPath = $uploadPath;
+    public function getOptions() {
+        if (!$this->options) {
+            $sm = $this->getServiceLocator();
+            $this->options = $sm->get('File\ModuleOptions');
         }
-        return $this->uploadPath;
-    }
-
-    /**
-     * Return the upload location
-     *
-     * @return string upload location
-     */
-    protected function getMaxFileSize() {
-        if (!$this->maxFileSize) {
-            // Fetch Configuration from Module Config
-            $config = $this->getServiceLocator()->get('Config');
-            $this->maxFileSize = $config['module_config']['max_file_size'];
-        }
-        return $this->maxFileSize;
+        return $this->options;
     }
 
 }

@@ -15,10 +15,6 @@
 $env = getenv('APP_ENV') ? : 'production';
 
 return array(
-    'module_config' => array(
-        'upload_location' => __DIR__ . '/../../data/uploads',
-        'max_file_size' => 100000000 // Bytes
-    ),
     'db' => array(
         'driver' => 'Pdo',
         'driver_options' => array(

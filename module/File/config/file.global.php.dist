@@ -1,0 +1,31 @@
+<?php
+
+/**
+ * File Configuration
+ *
+ * If you have a ./config/autoload/ directory set up for your project, you can
+ * drop this config file in it and change the values as you wish.
+ */
+$options = array(
+
+    /**
+     * Path were the uploaded files will be stored
+     *
+     * Default: data/uploads
+     */
+    'upload_folder_path' => 'data/uploads',
+    
+    /**
+     * Max. file size for the uploaded files in bytes
+     *
+     * Default: 10000000 (10 MByte)
+     */
+    'max_file_size_in_byte' => 10000000,
+);
+
+/**
+ * End of File configuration
+ */
+return array(
+    'file' => $options,
+);

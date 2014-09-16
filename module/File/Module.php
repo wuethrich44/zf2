@@ -25,6 +25,7 @@ class Module {
                 'File\Model\File' => 'File\Model\File'
             ),
             'factories' => array(
+                'File\ModuleOptions' => 'File\Factory\ModuleOptionsFactory',
                 'File\Model\FileTable' => 'File\Model\Factory\FileTableFactory',
                 'File\Model\ResultSet' => 'File\Model\Factory\ResultSetFactory',
                 'File\Model\TableGateway' => 'File\Model\Factory\TableGatewayFactory',
