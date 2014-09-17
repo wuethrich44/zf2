@@ -26,7 +26,8 @@
     },
     "require-dev": {
         "zendframework/zftool": "dev-master",
-        "phpunit/phpunit": "4.2.*",
+        "zendframework/zend-test": "2.3.*",
+        "phpunit/phpunit": "3.7.*",
         "evandotpro/edp-superluminal": "dev-master",
         "robertboloc/zf2-components-list-generator": "dev-master"
     }
