@@ -12,6 +12,7 @@ class DownloadController extends AbstractActionController {
     protected $subjectTable;
     protected $categoryTable;
     protected $fileTable;
+    protected $options;
 
     /**
      * Display view depended on the given parameters
@@ -99,7 +100,7 @@ class DownloadController extends AbstractActionController {
 
         $this->getFileTable()->incrementDownloadCount($file);
 
-        $fileUrl = 'data/uploads' . "/" . $file->url;
+        $fileUrl = $this->getOptions()->getDownloadFolderPath() . "/" . $file->url;
 
         if (!file_exists($fileUrl)) {
             throw new \Exception("File doesn't exists");
@@ -164,6 +165,14 @@ class DownloadController extends AbstractActionController {
             $this->fileTable = $sm->get('File\Model\FileTable');
         }
         return $this->fileTable;
+    }
+
+    public function getOptions() {
+        if (!$this->options) {
+            $sm = $this->getServiceLocator();
+            $this->options = $sm->get('Download\ModuleOptions');
+        }
+        return $this->options;
     }
 
 }
