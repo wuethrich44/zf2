@@ -71,31 +71,10 @@ return array(
         ),
     ),
     'service_manager' => array(
-        'abstract_factories' => array(
-            'Zend\Cache\Service\StorageCacheAbstractServiceFactory',
-            'Zend\Log\LoggerAbstractServiceFactory',
-        ),
         'aliases' => array(
             'translator' => 'MvcTranslator',
         ),
         'factories' => array(
-            'Zend\Db\Adapter\Adapter' => function ($sm) {
-        $config = $sm->get('Config');
-        $dbParams = $config ['dbParams'];
-
-        return new Zend\Db\Adapter\Adapter(array(
-            'driver' => 'pdo',
-            'dsn' => 'mysql:dbname=' . $dbParams ['database'] . ';host=' . $dbParams ['hostname'],
-            'database' => $dbParams ['database'],
-            'username' => $dbParams ['username'],
-            'password' => $dbParams ['password'],
-            'hostname' => $dbParams ['hostname'],
-            'driver_options' => array(
-                PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\'',
-                PDO::ATTR_PERSISTENT => true
-            ),
-        ));
-    },
             'navigation' => 'Zend\Navigation\Service\DefaultNavigationFactory'
         ),
     ),

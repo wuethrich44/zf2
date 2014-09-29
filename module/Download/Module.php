@@ -18,4 +18,12 @@ class Module {
         );
     }
 
+    public function getServiceConfig() {
+        return array(
+            'factories' => array(
+                'Download\ModuleOptions' => 'Download\Factory\ModuleOptionsFactory',
+            ),
+        );
+    }
+
 }

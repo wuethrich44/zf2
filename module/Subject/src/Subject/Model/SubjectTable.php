@@ -35,7 +35,7 @@ class SubjectTable {
             $paginator = new Paginator($paginatorAdapter);
             return $paginator;
         }
-        
+
         return $this->tableGateway->selectWith($select);
     }
 
@@ -75,7 +75,6 @@ class SubjectTable {
         if (!$row) {
             return 0;
         }
-
         return $row->subjectID;
     }
 

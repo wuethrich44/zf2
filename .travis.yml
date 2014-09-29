@@ -7,10 +7,9 @@ php:
 
 before_script:
   - composer self-update
-  - composer install --dev --prefer-source;
-
-script: phpunit --configuration module/File/test/phpunit.xml --coverage-clover=coverage.clover
-        
+  - composer install --prefer-source;
+  
+script: phpunit --configuration module/Category/tests/phpunit.xml --coverage-clover=coverage.clover
         
 after_script:
   - wget https://scrutinizer-ci.com/ocular.phar

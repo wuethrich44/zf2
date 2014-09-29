@@ -12,6 +12,7 @@ class DownloadController extends AbstractActionController {
     protected $subjectTable;
     protected $categoryTable;
     protected $fileTable;
+    protected $options;
 
     /**
      * Display view depended on the given parameters
@@ -99,7 +100,7 @@ class DownloadController extends AbstractActionController {
 
         $this->getFileTable()->incrementDownloadCount($file);
 
-        $fileUrl = $this->getFileUploadLocation() . "/" . $file->url;
+        $fileUrl = $this->getOptions()->getDownloadFolderPath() . "/" . $file->url;
 
         if (!file_exists($fileUrl)) {
             throw new \Exception("File doesn't exists");
@@ -119,7 +120,7 @@ class DownloadController extends AbstractActionController {
         $response->setHeaders($headers);
         return $response;
     }
-    
+
     /**
      * Placeholder Upload
      */
@@ -130,7 +131,7 @@ class DownloadController extends AbstractActionController {
     /**
      * Return the SubjectTableGateway
      * 
-     * @return File\Model\SubjectTable
+     * @return Subject\Model\SubjectTable
      */
     public function getSubjectTable() {
         if (!$this->subjectTable) {
@@ -166,15 +167,12 @@ class DownloadController extends AbstractActionController {
         return $this->fileTable;
     }
 
-    /**
-     * Return the upload location
-     *
-     * @return String
-     */
-    protected function getFileUploadLocation() {
-        // Fetch Configuration from Module Config
-        $config = $this->getServiceLocator()->get('Config');
-        return $config['module_config']['upload_location'];
+    public function getOptions() {
+        if (!$this->options) {
+            $sm = $this->getServiceLocator();
+            $this->options = $sm->get('Download\ModuleOptions');
+        }
+        return $this->options;
     }
 
 }
