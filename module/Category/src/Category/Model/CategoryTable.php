@@ -30,9 +30,7 @@ class CategoryTable {
         $select = $this->tableGateway->getSql()->select()->order('name');
 
         if ($paginated) {
-            $resultSetPrototype = new ResultSet();
-            $resultSetPrototype->setArrayObjectPrototype(new Category());
-            $paginatorAdapter = new DbSelect($select, $this->tableGateway->getAdapter(), $resultSetPrototype);
+            $paginatorAdapter = new DbSelect($select, $this->tableGateway->getAdapter(), $this->tableGateway->getResultSetPrototype());
             $paginator = new Paginator($paginatorAdapter);
             return $paginator;
         }

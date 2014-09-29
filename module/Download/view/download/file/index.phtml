@@ -70,7 +70,7 @@
 
             fileID = $('.alert-danger').attr('data-id');
             //Pass fileID from alert-danger to controller
-            url = '<?php echo $this->url('file', array('action' => 'delete')); ?>' + '/' + fileID;
+            url = '<?php echo $this->url('zfcadmin/file', array('action' => 'delete')); ?>' + '/' + fileID;
 
             $.post(url, function(data) {
                 if (data.state) {

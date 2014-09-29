@@ -1,19 +1,37 @@
 {
     "name": "studentbox/website",
     "description": "Einfach studieren an der HSLU",
+    "license": "MIT",
     "require": {
         "php": ">=5.3.3",
-        "zendframework/zendframework": "2.3.*",
+        "zendframework/zend-stdlib": "2.3.*",
+        "zendframework/zend-cache": "2.3.*",
+        "zendframework/zend-log": "2.3.*",
+        "zendframework/zend-db": "2.3.*",
+        "zendframework/zend-captcha": "2.3.*",
+        "zendframework/zend-loader": "2.3.*",
+        "zendframework/zend-mvc": "2.3.*",
+        "zendframework/zend-navigation": "2.3.*",
+        "zendframework/zend-i18n": "2.3.*",
+        "zendframework/zend-validator": "2.3.*",
+        "zendframework/zend-view": "2.3.*",
+        "zendframework/zend-paginator": "2.3.*",
+        "zendframework/zend-form": "2.3.*",
+        "zendframework/zend-inputfilter": "2.3.*",
+        "zendframework/zend-servicemanager": "2.3.*",
+        "zendframework/zend-http": "2.3.*",
+        "zendframework/zend-file": "2.3.*",
+        "zendframework/zend-filter": "2.3.*",
         "zf-commons/zfc-user": "1.2.*",
         "zf-commons/zfc-admin": "0.2.*",
-        "danielss89/zfc-user-admin": "dev-master",
         "neilime/zf2-twb-bundle": "2.3.*",
-        "bjyoungblood/bjy-authorize": "1.4.*",
-        "hrevert/ht-user-registration": "dev-master"
+        "bjyoungblood/bjy-authorize": "1.4.*"
     },
     "require-dev": {
         "zendframework/zftool": "dev-master",
-        "phpunit/phpunit": "3.7.*"
-    },
-    "minimum-stability": "dev"
+        "zendframework/zend-test": "2.3.*",
+        "phpunit/phpunit": "3.7.*",
+        "evandotpro/edp-superluminal": "dev-master",
+        "robertboloc/zf2-components-list-generator": "dev-master"
+    }
 }

@@ -36,13 +36,9 @@ $this->headTitle($title);
             <td style="text-align: center;" colspan="3">
                 <?php
                 echo $this->paginationControl(
-                        $this->paginator, 
-                        'sliding', 
-                        array('partial/paginator.phtml', 'Category'), 
-                        array('route' => 'zfcadmin/category')
+                        $this->paginator, 'sliding', array('partial/paginator.phtml', 'Category'), array('route' => 'zfcadmin/category')
                 );
                 ?>
             </td>
         </tr>
     </tfoot>
-</table>

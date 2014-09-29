@@ -29,13 +29,11 @@ class SubjectTable {
         $select = $this->tableGateway->getSql()->select()->order('name');
 
         if ($paginated) {
-            $resultSetPrototype = new ResultSet();
-            $resultSetPrototype->setArrayObjectPrototype(new Subject());
-            $paginatorAdapter = new DbSelect($select, $this->tableGateway->getAdapter(), $resultSetPrototype);
+            $paginatorAdapter = new DbSelect($select, $this->tableGateway->getAdapter(), $this->tableGateway->getResultSetPrototype());
             $paginator = new Paginator($paginatorAdapter);
             return $paginator;
         }
-        
+
         return $this->tableGateway->selectWith($select);
     }
 
@@ -75,7 +73,6 @@ class SubjectTable {
         if (!$row) {
             return 0;
         }
-
         return $row->subjectID;
     }
 
