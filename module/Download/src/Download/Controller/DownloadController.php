@@ -28,19 +28,19 @@ class DownloadController extends AbstractActionController {
                         $this->params()->fromRoute('category'));
         $fileID = (int) $this->params()->fromRoute('file');
 
-        if ($subjectID and ! $categoryID) {
+        if ($subjectID && ! $categoryID) {
             // If a subject ID given, show the category view
             return $this->showCategoryView($subjectID);
         }
 
-        if ($subjectID and $categoryID and ! $fileID) {
+        if ($subjectID && $categoryID && ! $fileID) {
             // If a subject and category ID given, show the download view
             return $this->showDownloadView($subjectID, $categoryID);
         }
 
-        if ($subjectID and $categoryID and $fileID) {
+        if ($subjectID && $categoryID && $fileID) {
             // If a subject, category and file ID given, download the file
-            return $this->downloadFile($fileID);
+            return $this->downloadFile($subjectID, $categoryID, $fileID);
         }
 
         // If no ID given, show the subject view
@@ -95,8 +95,8 @@ class DownloadController extends AbstractActionController {
      * @param int $fileID            
      * @return \Zend\Http\Response\Stream
      */
-    protected function downloadFile($fileID) {
-        $file = $this->getFileTable()->getFile($fileID);
+    protected function downloadFile($subjectID, $categoryID, $fileID) {
+        $file = $this->getFileTable()->getFile($subjectID, $categoryID, $fileID);
 
         $this->getFileTable()->incrementDownloadCount($file);
 

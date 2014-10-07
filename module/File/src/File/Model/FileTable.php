@@ -31,15 +31,21 @@ class FileTable {
 
     /**
      * Return a file by ID
-     *
-     * @param int $fileID            
+     * 
+     * @param int $subjectID
+     * @param int $categoryID   
+     * @param int $fileID         
      * @throws \Exception File not found
      * @return File
      */
-    public function getFile($fileID) {
+    public function getFile($subjectID, $categoryID, $fileID) {
+        $subjectID = (int) $subjectID;
+        $categoryID = (int) $categoryID;
         $fileID = (int) $fileID;
         $rowset = $this->tableGateway->select(
                 array(
+                    'subjectID' => $subjectID,
+                    'categoryID' => $categoryID,
                     'fileID' => $fileID
         ));
         $row = $rowset->current();
@@ -96,8 +102,10 @@ class FileTable {
             // If no ID given insert a new file
             $this->tableGateway->insert($data);
         } else {
-            if ($this->getFile($fileID)) {
+            if ($this->getFile($subjectID, $categoryID, $fileID)) {
                 $this->tableGateway->update($data, array(
+                    'subjectID' => $subjectID,
+                    'categoryID' => $categoryID,
                     'fileID' => $fileID
                 ));
             } else {
