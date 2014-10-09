@@ -10,18 +10,21 @@ use Zend\Filter\File\Rename;
 use File\Model\File;
 use File\Form\UploadForm;
 
-class FileController extends AbstractActionController {
+class FileController extends AbstractActionController
+{
 
     protected $subjectTable;
     protected $categoryTable;
     protected $fileTable;
     protected $options;
 
-    public function indexAction() {
+    public function indexAction()
+    {
         throw new \BadMethodCallException('Method not implemented');
     }
 
-    public function addAction() {
+    public function addAction()
+    {
         if (!$this->zfcUserAuthentication()->hasIdentity()) {
             return $this->redirect()->toRoute('zfcuser');
         }
@@ -42,7 +45,8 @@ class FileController extends AbstractActionController {
             $file = new File();
 
             $data = array_merge_recursive(
-                    $this->getRequest()->getPost()->toArray(), $this->getRequest()->getFiles()->toArray()
+                $this->getRequest()->getPost()->toArray(),
+                $this->getRequest()->getFiles()->toArray()
             );
 
             $form->setData($data);
@@ -111,7 +115,8 @@ class FileController extends AbstractActionController {
         );
     }
 
-    public function editAction() {
+    public function editAction()
+    {
         throw new \BadMethodCallException('Method not implemented');
     }
 
@@ -122,7 +127,8 @@ class FileController extends AbstractActionController {
      * @throws \InvalidArgumentException File not found
      * @return \Zend\Http\Response|null
      */
-    public function deleteAction() {
+    public function deleteAction()
+    {
         // Check Login
         if (!$this->zfcUserAuthentication()->hasIdentity()) {
             return $this->redirect()->toRoute('zfcuser');
@@ -154,7 +160,8 @@ class FileController extends AbstractActionController {
         }
     }
 
-    public function getSubjectTable() {
+    public function getSubjectTable()
+    {
         if (!$this->subjectTable) {
             $sm = $this->getServiceLocator();
             $this->subjectTable = $sm->get('Subject\Model\SubjectTable');
@@ -162,7 +169,8 @@ class FileController extends AbstractActionController {
         return $this->subjectTable;
     }
 
-    public function getCategoryTable() {
+    public function getCategoryTable()
+    {
         if (!$this->categoryTable) {
             $sm = $this->getServiceLocator();
             $this->categoryTable = $sm->get('Category\Model\CategoryTable');
@@ -170,7 +178,8 @@ class FileController extends AbstractActionController {
         return $this->categoryTable;
     }
 
-    public function getFileTable() {
+    public function getFileTable()
+    {
         if (!$this->fileTable) {
             $sm = $this->getServiceLocator();
             $this->fileTable = $sm->get('File\Model\FileTable');
@@ -178,12 +187,12 @@ class FileController extends AbstractActionController {
         return $this->fileTable;
     }
 
-    public function getOptions() {
+    public function getOptions()
+    {
         if (!$this->options) {
             $sm = $this->getServiceLocator();
             $this->options = $sm->get('File\ModuleOptions');
         }
         return $this->options;
     }
-
 }

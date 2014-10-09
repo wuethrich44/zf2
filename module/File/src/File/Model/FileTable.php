@@ -5,7 +5,8 @@ namespace File\Model;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\Db\ResultSet\ResultSet;
 
-class FileTable {
+class FileTable
+{
 
     protected $tableGateway;
 
@@ -14,7 +15,8 @@ class FileTable {
      *
      * @param TableGateway $tableGateway            
      */
-    public function __construct(TableGateway $tableGateway) {
+    public function __construct(TableGateway $tableGateway)
+    {
         $this->tableGateway = $tableGateway;
     }
 
@@ -23,7 +25,8 @@ class FileTable {
      *
      * @return ResultSet
      */
-    public function fetchAll() {
+    public function fetchAll()
+    {
         $select = $this->tableGateway->getSql()->select()->order('name');
 
         return $this->tableGateway->selectWith($select);
@@ -38,16 +41,18 @@ class FileTable {
      * @throws \Exception File not found
      * @return File
      */
-    public function getFile($subjectID, $categoryID, $fileID) {
+    public function getFile($subjectID, $categoryID, $fileID)
+    {
         $subjectID = (int) $subjectID;
         $categoryID = (int) $categoryID;
         $fileID = (int) $fileID;
         $rowset = $this->tableGateway->select(
-                array(
-                    'subjectID' => $subjectID,
-                    'categoryID' => $categoryID,
-                    'fileID' => $fileID
-        ));
+            array(
+                'subjectID' => $subjectID,
+                'categoryID' => $categoryID,
+                'fileID' => $fileID
+            )
+        );
         $row = $rowset->current();
         if (!$row) {
             throw new \Exception("Could not find file with ID $fileID");
@@ -62,15 +67,11 @@ class FileTable {
      * @param int $categoryID            
      * @return ResultSet
      */
-    public function getFiles($subjectID, $categoryID) {
+    public function getFiles($subjectID, $categoryID)
+    {
         $select = $this->tableGateway->getSql()
                 ->select()
-                ->where(
-                    array(
-                        'subjectID' => $subjectID,
-                        'categoryID' => $categoryID
-                    )
-                )
+                ->where(array('subjectID' => $subjectID,'categoryID' => $categoryID))
                 ->order('filename');
 
         return $this->tableGateway->selectWith($select);
@@ -84,7 +85,8 @@ class FileTable {
      * @param int $categoryID            
      * @throws \Exception File not found
      */
-    public function saveFile(File $file, $subjectID, $categoryID) {
+    public function saveFile(File $file, $subjectID, $categoryID)
+    {
         $subjectID = (int) $subjectID;
         $categoryID = (int) $categoryID;
 
@@ -120,7 +122,8 @@ class FileTable {
      * @param int $fileID            
      * @throws \BadMethodCallException
      */
-    public function deleteFile($fileID) {
+    public function deleteFile($fileID)
+    {
         $this->tableGateway->delete(array(
             'fileID' => (int) $fileID
         ));
@@ -132,7 +135,8 @@ class FileTable {
      * @param File $file            
      * @throws \Exception Could not icrement
      */
-    public function incrementDownloadCount(File $file) {
+    public function incrementDownloadCount(File $file)
+    {
         if ($file instanceof File) {
             $data = array(
                 'downloadCount' => $file->downloadCount + 1
@@ -144,5 +148,4 @@ class FileTable {
             throw new \Exception("Could not increment the download counter");
         }
     }
-
 }
