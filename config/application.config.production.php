@@ -6,5 +6,3 @@ return array(
         'module_map_cache_enabled' => true,
     ),
 );
-
-
