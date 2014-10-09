@@ -5,10 +5,12 @@ namespace Category\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Zend\Validator\Db\NoRecordExists;
+use Zend\Validator\Db\AbstractDb;
 use Category\Form\CategoryForm;
 use Category\Form\DeleteForm;
 
-class CategoryController extends AbstractActionController {
+class CategoryController extends AbstractActionController
+{
 
     protected $category;
     protected $categoryTable;
@@ -20,14 +22,13 @@ class CategoryController extends AbstractActionController {
      * 
      * @see \Zend\Mvc\Controller\AbstractActionController::indexAction()
      */
-    public function indexAction() {
-        // Check Login
+    public function indexAction()
+    {
         if (!$this->zfcUserAuthentication()->hasIdentity()) {
             return $this->redirect()->toRoute('zfcuser');
         }
 
-        return new ViewModel(
-                array(
+        return new ViewModel(array(
             'categories' => $this->getCategoryTable()->fetchAll()
         ));
     }
@@ -37,7 +38,8 @@ class CategoryController extends AbstractActionController {
      *
      * @return ViewModel
      */
-    public function addAction() {
+    public function addAction()
+    {
         if (!$this->zfcUserAuthentication()->hasIdentity()) {
             return $this->redirect()->toRoute('zfcuser');
         }
@@ -68,25 +70,21 @@ class CategoryController extends AbstractActionController {
      *
      * @return ViewModel
      */
-    public function editAction() {
-        // Check Login
+    public function editAction()
+    {
         if (!$this->zfcUserAuthentication()->hasIdentity()) {
             return $this->redirect()->toRoute('zfcuser');
         }
 
         $categoryID = (int) $this->params()->fromRoute('id', 0);
         if (!$categoryID) {
-            return $this->redirect()->toRoute('category', array(
-                        'action' => 'add'
-            ));
+            return $this->redirect()->toRoute('category', array('action' => 'add'));
         }
 
         try {
             $category = $this->getCategoryTable()->getCategory($categoryID);
         } catch (\Exception $ex) {
-            return $this->redirect()->toRoute('category', array(
-                        'action' => 'index'
-            ));
+            return $this->redirect()->toRoute('category', array('action' => 'index'));
         }
 
         $form = new CategoryForm();
@@ -99,10 +97,8 @@ class CategoryController extends AbstractActionController {
             $form->setData($request->getPost());
 
             if ($form->isValid()) {
-                // FIXME check if name already exists
                 $this->getCategoryTable()->saveCategory($category);
-
-                // Redirect to list of categories
+                
                 return $this->redirect()->toRoute('category');
             }
         }
@@ -118,8 +114,8 @@ class CategoryController extends AbstractActionController {
      *
      * @return ViewModel
      */
-    public function deleteAction() {
-        // Check Login
+    public function deleteAction()
+    {
         if (!$this->zfcUserAuthentication()->hasIdentity()) {
             return $this->redirect()->toRoute('zfcuser');
         }
@@ -137,7 +133,6 @@ class CategoryController extends AbstractActionController {
             $no = $request->getPost('no');
 
             if ($no == 'no') {
-                // Redirect to list of categories
                 return $this->redirect()->toRoute('category');
             }
 
@@ -146,20 +141,20 @@ class CategoryController extends AbstractActionController {
 
                 $form->setData($request->getPost());
 
-                $validator = new NoRecordExists(
-                        array(
+                $validator = new NoRecordExists(array(
                     'table' => 'files',
                     'field' => 'categoryID',
-                    'adapter' => $this->getServiceLocator()->get(
-                            'Zend\Db\Adapter\Adapter')
+                    'adapter' => $this->getServiceLocator()->get('Zend\Db\Adapter\Adapter')
                 ));
-                $validator->setMessage("Please delete all files in this category", \Zend\Validator\Db\AbstractDb::ERROR_RECORD_FOUND);
+                $validator->setMessage(
+                    "Please delete all files in this category",
+                    AbstractDb::ERROR_RECORD_FOUND
+                );
 
                 $form->getInputFilter()->get('id')->getValidatorChain()->addValidator($validator);
 
                 if ($form->isValid()) {
                     $this->getCategoryTable()->deleteCategory($categoryID);
-                    // Redirect to list of categories
                     return $this->redirect()->toRoute('category');
                 }
             }
@@ -167,25 +162,23 @@ class CategoryController extends AbstractActionController {
         return array(
             'form' => $form,
             'id' => $categoryID,
-            'category' => $this->getCategoryTable()->getCategory(
-                    $categoryID)
+            'category' => $this->getCategoryTable()->getCategory($categoryID)
         );
     }
 
-    public function getCategory() {
+    public function getCategory()
+    {
         if (!$this->category) {
-            $sm = $this->getServiceLocator();
-            $this->category = $sm->get('Category\Model\Category');
+            $this->category = $this->getServiceLocator()->get('Category\Model\Category');
         }
         return $this->category;
     }
 
-    public function getCategoryTable() {
+    public function getCategoryTable()
+    {
         if (!$this->categoryTable) {
-            $sm = $this->getServiceLocator();
-            $this->categoryTable = $sm->get('Category\Model\CategoryTable');
+            $this->categoryTable = $this->getServiceLocator()->get('Category\Model\CategoryTable');
         }
         return $this->categoryTable;
     }
-
 }

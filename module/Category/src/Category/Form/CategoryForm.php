@@ -4,9 +4,11 @@ namespace Category\Form;
 
 use Zend\Form\Form;
 
-class CategoryForm extends Form {
+class CategoryForm extends Form
+{
 
-    public function __construct($name = null) {
+    public function __construct($name = null)
+    {
         parent::__construct('category');
 
         $this->add(array(
@@ -32,5 +34,4 @@ class CategoryForm extends Form {
             ),
         ));
     }
-
 }

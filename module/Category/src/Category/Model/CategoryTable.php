@@ -5,7 +5,8 @@ namespace Category\Model;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\Db\Sql\Expression;
 
-class CategoryTable {
+class CategoryTable
+{
 
     protected $tableGateway;
 
@@ -14,7 +15,8 @@ class CategoryTable {
      *
      * @param TableGateway $tableGateway            
      */
-    public function __construct(TableGateway $tableGateway) {
+    public function __construct(TableGateway $tableGateway)
+    {
         $this->tableGateway = $tableGateway;
     }
 
@@ -23,7 +25,8 @@ class CategoryTable {
      *
      * @return \Zend\Db\ResultSet\ResultSet with Categories
      */
-    public function fetchAll() {
+    public function fetchAll()
+    {
         $select = $this->tableGateway->getSql()->select()->order('name');
 
         return $this->tableGateway->selectWith($select);
@@ -36,11 +39,11 @@ class CategoryTable {
      * @throws \Exception Categorie not found
      * @return \Zend\Db\ResultSet\ResultSet with Categories
      */
-    public function getCategory($categoryID) {
+    public function getCategory($categoryID)
+    {
         $categoryID = (int) $categoryID;
-        $rowset = $this->tableGateway->select(
-                array(
-                    'categoryID' => $categoryID
+        $rowset = $this->tableGateway->select(array(
+            'categoryID' => $categoryID
         ));
         $row = $rowset->current();
         if (!$row) {
@@ -48,24 +51,24 @@ class CategoryTable {
         }
         return $row;
     }
-    
-        /**
+
+    /**
      * Return a the cateogryID by category name
      * 
      * @param String $name 
      * @return int subjectID
      */
-    public function getCategoryID($name) {
-        $rowset = $this->tableGateway->select(
-                array(
-                    'name' => $name
+    public function getCategoryID($name)
+    {
+        $rowset = $this->tableGateway->select(array(
+            'name' => $name
         ));
         $row = $rowset->current();
-        
-        if(!$row) {
+
+        if (!$row) {
             return 0;
         }
-        
+
         return $row->categoryID;
     }
 
@@ -75,9 +78,10 @@ class CategoryTable {
      * @param unknown $subjectID            
      * @return \Zend\Db\ResultSet\ResultSet with Categories
      */
-    public function getUsedCategories($subjectID) {
+    public function getUsedCategories($subjectID)
+    {
         $subjectID = (int) $subjectID;
-        
+
         $select = $this->tableGateway->getSql()
                 ->select()
                 ->columns(array('*', 'fileCount' => new Expression('COUNT(files.fileID)')))
@@ -94,7 +98,8 @@ class CategoryTable {
      *
      * @return array
      */
-    public function getCategoriesForSelect() {
+    public function getCategoriesForSelect()
+    {
         $categories = $this->fetchAll();
         $array = array();
         foreach ($categories as $category) {
@@ -110,7 +115,8 @@ class CategoryTable {
      * @param Category $category
      * @throws \Exception Could not find category
      */
-    public function saveCategory(Category $category) {
+    public function saveCategory(Category $category)
+    {
         $data = array(
             'name' => $category->name
         );
@@ -124,8 +130,7 @@ class CategoryTable {
                     'categoryID' => $categoryID
                 ));
             } else {
-                throw new \Exception(
-                "Could not find category with ID $categoryID");
+                throw new \Exception("Could not find category with ID $categoryID");
             }
         }
     }
@@ -135,8 +140,8 @@ class CategoryTable {
      * 
      * @param int $categoryID
      */
-    public function deleteCategory($categoryID) {
+    public function deleteCategory($categoryID)
+    {
         $this->tableGateway->delete(array('categoryID' => (int) $categoryID));
     }
-
 }
