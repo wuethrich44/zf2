@@ -7,7 +7,8 @@ use Zend\View\Model\ViewModel;
 use Zend\Http\Response\Stream;
 use Zend\Http\Headers;
 
-class DownloadController extends AbstractActionController {
+class DownloadController extends AbstractActionController
+{
 
     protected $subjectTable;
     protected $categoryTable;
@@ -21,19 +22,18 @@ class DownloadController extends AbstractActionController {
      *
      * @see \Zend\Mvc\Controller\AbstractActionController::indexAction()
      */
-    public function indexAction() {
-        $subjectID = (int) $this->getSubjectTable()->getSubjectID(
-                        $this->params()->fromRoute('subject'));
-        $categoryID = (int) $this->getCategoryTable()->getCategoryID(
-                        $this->params()->fromRoute('category'));
+    public function indexAction()
+    {
+        $subjectID = (int) $this->getSubjectTable()->getSubjectID($this->params()->fromRoute('subject'));
+        $categoryID = (int) $this->getCategoryTable()->getCategoryID($this->params()->fromRoute('category'));
         $fileID = (int) $this->params()->fromRoute('file');
 
-        if ($subjectID && ! $categoryID) {
+        if ($subjectID && !$categoryID) {
             // If a subject ID given, show the category view
             return $this->showCategoryView($subjectID);
         }
 
-        if ($subjectID && $categoryID && ! $fileID) {
+        if ($subjectID && $categoryID && !$fileID) {
             // If a subject and category ID given, show the download view
             return $this->showDownloadView($subjectID, $categoryID);
         }
@@ -52,7 +52,8 @@ class DownloadController extends AbstractActionController {
      *
      * @return ViewModel subject view
      */
-    protected function showSubjectView() {
+    protected function showSubjectView()
+    {
         $view = new ViewModel(array(
             'subjects' => $this->getSubjectTable()->getUsedSubjects()
         ));
@@ -65,7 +66,8 @@ class DownloadController extends AbstractActionController {
      * @param int $subjectID           
      * @return ViewModel category view
      */
-    protected function showCategoryView($subjectID) {
+    protected function showCategoryView($subjectID)
+    {
         $view = new ViewModel(array(
             'subject' => $this->getSubjectTable()->getSubject($subjectID),
             'categories' => $this->getCategoryTable()->getUsedCategories($subjectID),
@@ -80,7 +82,8 @@ class DownloadController extends AbstractActionController {
      * @param int $categoryID            
      * @return ViewModel file view
      */
-    protected function showDownloadView($subjectID, $categoryID) {
+    protected function showDownloadView($subjectID, $categoryID)
+    {
         $view = new ViewModel(array(
             'subject' => $this->getSubjectTable()->getSubject($subjectID),
             'category' => $this->getCategoryTable()->getCategory($categoryID),
@@ -95,7 +98,8 @@ class DownloadController extends AbstractActionController {
      * @param int $fileID            
      * @return \Zend\Http\Response\Stream
      */
-    protected function downloadFile($subjectID, $categoryID, $fileID) {
+    protected function downloadFile($subjectID, $categoryID, $fileID)
+    {
         $file = $this->getFileTable()->getFile($subjectID, $categoryID, $fileID);
 
         $this->getFileTable()->incrementDownloadCount($file);
@@ -124,7 +128,8 @@ class DownloadController extends AbstractActionController {
     /**
      * Placeholder Upload
      */
-    public function uploadAction() {
+    public function uploadAction()
+    {
         return new ViewModel();
     }
 
@@ -133,7 +138,8 @@ class DownloadController extends AbstractActionController {
      * 
      * @return Subject\Model\SubjectTable
      */
-    public function getSubjectTable() {
+    public function getSubjectTable()
+    {
         if (!$this->subjectTable) {
             $sm = $this->getServiceLocator();
             $this->subjectTable = $sm->get('Subject\Model\SubjectTable');
@@ -146,7 +152,8 @@ class DownloadController extends AbstractActionController {
      * 
      * @return File\Model\CategoryTable
      */
-    public function getCategoryTable() {
+    public function getCategoryTable()
+    {
         if (!$this->categoryTable) {
             $sm = $this->getServiceLocator();
             $this->categoryTable = $sm->get('Category\Model\CategoryTable');
@@ -159,7 +166,8 @@ class DownloadController extends AbstractActionController {
      * 
      * @return File\Model\FileTable
      */
-    public function getFileTable() {
+    public function getFileTable()
+    {
         if (!$this->fileTable) {
             $sm = $this->getServiceLocator();
             $this->fileTable = $sm->get('File\Model\FileTable');
@@ -167,12 +175,12 @@ class DownloadController extends AbstractActionController {
         return $this->fileTable;
     }
 
-    public function getOptions() {
+    public function getOptions()
+    {
         if (!$this->options) {
             $sm = $this->getServiceLocator();
             $this->options = $sm->get('Download\ModuleOptions');
         }
         return $this->options;
     }
-
 }
