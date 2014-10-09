@@ -2,13 +2,16 @@
 
 namespace Subject;
 
-class Module {
+class Module
+{
 
-    public function getConfig() {
+    public function getConfig()
+    {
         return include __DIR__ . '/config/module.config.php';
     }
 
-    public function getAutoloaderConfig() {
+    public function getAutoloaderConfig()
+    {
         return array(
             'Zend\Loader\StandardAutoloader' => array(
                 'namespaces' => array(
@@ -19,7 +22,8 @@ class Module {
         );
     }
 
-    public function getServiceConfig() {
+    public function getServiceConfig()
+    {
         return array(
             'factories' => array(
                 'Subject\Model\Subject' => 'Subject\Model\Factory\SubjectFactory',

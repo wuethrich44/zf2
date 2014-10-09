@@ -4,9 +4,11 @@ namespace Subject\Form;
 
 use Zend\Form\Form;
 
-class SubjectForm extends Form {
+class SubjectForm extends Form
+{
 
-    public function __construct($name = null) {
+    public function __construct($name = null)
+    {
         // we want to ignore the name passed
         parent::__construct('subject');
 

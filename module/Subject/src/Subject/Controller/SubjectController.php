@@ -8,12 +8,14 @@ use Zend\Validator\Db\NoRecordExists;
 use Subject\Form\SubjectForm;
 use Subject\Form\DeleteForm;
 
-class SubjectController extends AbstractActionController {
+class SubjectController extends AbstractActionController
+{
 
     protected $subject;
     protected $subjectTable;
 
-    public function indexAction() {
+    public function indexAction()
+    {
         // Check Login
         if (!$this->zfcUserAuthentication()->hasIdentity()) {
             return $this->redirect()->toRoute('zfcuser');
@@ -30,7 +32,8 @@ class SubjectController extends AbstractActionController {
      *
      * @return ViewModel
      */
-    public function addAction() {
+    public function addAction()
+    {
         // Check Login
         if (!$this->zfcUserAuthentication()->hasIdentity()) {
             return $this->redirect()->toRoute('zfcuser');
@@ -62,7 +65,8 @@ class SubjectController extends AbstractActionController {
      *
      * @return ViewModel
      */
-    public function editAction() {
+    public function editAction()
+    {
         // Check Login
         if (!$this->zfcUserAuthentication()->hasIdentity()) {
             return $this->redirect()->toRoute('zfcuser');
@@ -111,7 +115,8 @@ class SubjectController extends AbstractActionController {
      *
      * @return ViewModel
      */
-    public function deleteAction() {
+    public function deleteAction()
+    {
         // Check Login
         if (!$this->zfcUserAuthentication()->hasIdentity()) {
             return $this->redirect()->toRoute('zfcuser');
@@ -166,7 +171,8 @@ class SubjectController extends AbstractActionController {
         );
     }
 
-    public function getSubject() {
+    public function getSubject()
+    {
         if (!$this->subject) {
             $sm = $this->getServiceLocator();
             $this->subject = $sm->get('Subject\Model\Subject');
@@ -174,7 +180,8 @@ class SubjectController extends AbstractActionController {
         return $this->subject;
     }
 
-    public function getSubjectTable() {
+    public function getSubjectTable()
+    {
         if (!$this->subjectTable) {
             $sm = $this->getServiceLocator();
             $this->subjectTable = $sm->get('Subject\Model\SubjectTable');

@@ -4,7 +4,8 @@ namespace Subject\Model;
 
 use Zend\Db\TableGateway\TableGateway;
 
-class SubjectTable {
+class SubjectTable
+{
 
     protected $tableGateway;
 
@@ -13,7 +14,8 @@ class SubjectTable {
      *
      * @param TableGateway $tableGateway            
      */
-    public function __construct(TableGateway $tableGateway) {
+    public function __construct(TableGateway $tableGateway)
+    {
         $this->tableGateway = $tableGateway;
     }
 
@@ -22,7 +24,8 @@ class SubjectTable {
      *
      * @return \Zend\Db\ResultSet\ResultSet
      */
-    public function fetchAll() {
+    public function fetchAll()
+    {
         $select = $this->tableGateway->getSql()->select()->order('name');
 
         return $this->tableGateway->selectWith($select);
@@ -35,36 +38,32 @@ class SubjectTable {
      * @throws \Exception Subject not found
      * @return Subject
      */
-    public function getSubject($subjectID) {
+    public function getSubject($subjectID)
+    {
         $subjectID = (int) $subjectID;
-        $rowset = $this->tableGateway->select(
-                array(
-                    'subjectID' => $subjectID
-        ));
+        $rowset = $this->tableGateway->select(array('subjectID' => $subjectID));
         $row = $rowset->current();
         if (!$row) {
             throw new \Exception("Could not find subject with ID $subjectID");
         }
         return $row;
     }
-    
+
     /**
      * Return a the subjectID by abbreviation
      * 
      * @param String $abbreviation 
      * @return int subjectID
      */
-    public function getSubjectID($abbreviation) {
-        $rowset = $this->tableGateway->select(
-                array(
-                    'abbreviation' => $abbreviation
-        ));
+    public function getSubjectID($abbreviation)
+    {
+        $rowset = $this->tableGateway->select(array('abbreviation' => $abbreviation));
         $row = $rowset->current();
-        
-        if(!$row) {
+
+        if (!$row) {
             return 0;
         }
-        
+
         return $row->subjectID;
     }
 
@@ -73,7 +72,8 @@ class SubjectTable {
      *
      * @return \Zend\Db\ResultSet\ResultSet
      */
-    public function getUsedSubjects() {
+    public function getUsedSubjects()
+    {
         $select = $this->tableGateway->getSql()
                 ->select()
                 ->join('files', 'subjects.subjectID = files.subjectID')
@@ -88,7 +88,8 @@ class SubjectTable {
      *
      * @return array
      */
-    public function getSubjectsForSelect() {
+    public function getSubjectsForSelect()
+    {
         $subjects = $this->fetchAll();
         $array = array();
         foreach ($subjects as $subject) {
@@ -105,7 +106,8 @@ class SubjectTable {
      * @param Subject $subject            
      * @throws \Exception Could not find subject
      */
-    public function saveSubject(Subject $subject) {
+    public function saveSubject(Subject $subject)
+    {
         $data = array(
             'name' => $subject->name,
             'abbreviation' => $subject->abbreviation
@@ -120,8 +122,7 @@ class SubjectTable {
                     'subjectID' => $subjectID
                 ));
             } else {
-                throw new \Exception(
-                "Could not find subject with ID $subjectID");
+                throw new \Exception("Could not find subject with ID $subjectID");
             }
         }
     }
@@ -131,10 +132,10 @@ class SubjectTable {
      *
      * @param int $subjectID            
      */
-    public function deleteSubject($subjectID) {
+    public function deleteSubject($subjectID)
+    {
         $this->tableGateway->delete(array(
             'subjectID' => (int) $subjectID
         ));
     }
-
 }
